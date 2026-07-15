@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema UPA — Documentação Oficial</title>
+<title>Sistema UPA — Manual de Desenvolvimento</title>
 <style>
 :root{
   --bg:#f4f7fb;--surface:#fff;--surface2:#edf3f7;--text:#17222c;--muted:#667784;
@@ -102,17 +102,33 @@ pre{position:relative;margin:0;padding:20px;overflow:auto;background:var(--code)
 </header>
 
 <aside id="sidebar">
-  <div class="brand"><div class="logo">✚</div><div><h1>Sistema UPA</h1><small>Documentação oficial</small></div></div>
+  <div class="brand"><div class="logo">✚</div><div><h1>Sistema UPA</h1><small>Manual de desenvolvimento</small></div></div>
   <input id="search" class="search" placeholder="Pesquisar na documentação...">
   <nav>
-    <div class="nav-title">Visão geral</div>
-    <a href="#dashboard">Dashboard</a><a href="#visao">Visão</a><a href="#escopo">MVP</a><a href="#equipe">Equipe</a>
-    <div class="nav-title">Planejamento</div>
-    <a href="#cronograma">Cronograma</a><a href="#scrum">Scrum/Kanban</a><a href="#requisitos">Requisitos</a><a href="#historias">Histórias</a><a href="#git">Git</a>
-    <div class="nav-title">Sistema</div>
-    <a href="#perfis">Login e perfis</a><a href="#arquitetura">Arquitetura</a><a href="#banco">Banco</a><a href="#api">API</a><a href="#simulacao">Simulação</a><a href="#deploy">Nuvem</a>
-    <div class="nav-title">Construção</div>
-    <a href="#responsabilidades">Responsabilidades</a><a href="#codigos">Códigos</a><a href="#testes">Testes</a><a href="#entrega">Entrega</a>
+    <div class="nav-title">Preparação</div>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#ambiente">Ambiente</a>
+    <a href="#spring-initializr">Spring Initializr</a>
+    <a href="#estrutura-inicial">Estrutura inicial</a>
+    <a href="#git">Git e branches</a>
+
+    <div class="nav-title">Execução por Sprint</div>
+    <a href="#sprint1">Sprint 1 — Planejamento</a>
+    <a href="#sprint2">Sprint 2 — Back-End</a>
+    <a href="#sprint3">Sprint 3 — Front-End</a>
+    <a href="#sprint4">Sprint 4 — Testes</a>
+
+    <div class="nav-title">Referência técnica</div>
+    <a href="#perfis">Login e perfis</a>
+    <a href="#arquitetura">Arquitetura</a>
+    <a href="#banco">Banco</a>
+    <a href="#api">API REST</a>
+    <a href="#simulacao">Simulação</a>
+    <a href="#deploy">Nuvem</a>
+    <a href="#responsabilidades">Responsabilidades</a>
+    <a href="#codigos">Códigos</a>
+    <a href="#testes">Testes</a>
+    <a href="#entrega">Entrega</a>
   </nav>
 </aside>
 
@@ -134,6 +150,483 @@ pre{position:relative;margin:0;padding:20px;overflow:auto;background:var(--code)
         <div class="kpi"><span>CRUD principal</span><strong>Atendimento</strong></div><div class="kpi"><span>CRUD secundário</span><strong>Funcionário</strong></div><div class="kpi"><span>Demo</span><strong>Várias máquinas</strong></div>
       </div>
       <div class="warning"><strong>Atenção:</strong> o material do professor exige MySQL. A equipe escolheu Neon/PostgreSQL e publicação em nuvem; confirmem essa substituição com o professor.</div>
+    </section>
+
+
+    <section id="ambiente">
+      <h2 class="section-title">Preparação do ambiente</h2>
+      <p class="lead">Todos devem concluir esta etapa antes de começar a programar.</p>
+
+      <div class="grid3">
+        <div class="card">
+          <h3>Java 21</h3>
+          <p>Instalar o JDK 21 e testar:</p>
+          <pre><code>java -version
+javac -version</code></pre>
+        </div>
+
+        <div class="card">
+          <h3>Git</h3>
+          <p>Instalar e configurar:</p>
+          <pre><code>git --version
+git config --global user.name "SEU NOME"
+git config --global user.email "SEU EMAIL"</code></pre>
+        </div>
+
+        <div class="card">
+          <h3>Ferramentas</h3>
+          <ul>
+            <li>VS Code ou IntelliJ IDEA.</li>
+            <li>Postman.</li>
+            <li>Draw.io.</li>
+            <li>Chrome ou Edge.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Contas</h3>
+          <ul>
+            <li>GitHub.</li>
+            <li>Neon.</li>
+            <li>Railway.</li>
+            <li>Vercel.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Extensões VS Code</h3>
+          <ul>
+            <li>Extension Pack for Java.</li>
+            <li>Spring Boot Extension Pack.</li>
+            <li>Live Server.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Teste mínimo</h3>
+          <p>Cada integrante deve conseguir clonar, criar uma branch, fazer commit e push.</p>
+        </div>
+      </div>
+
+      <div class="warning">
+        Não comecem a desenvolver funcionalidades enquanto algum integrante ainda não consegue executar Git, Java e o projeto.
+      </div>
+    </section>
+
+    <section id="spring-initializr">
+      <h2 class="section-title">Spring Initializr — configuração exata</h2>
+      <p class="lead">O Integrante 5 cria o projeto; os demais do Back-End revisam antes do primeiro commit.</p>
+
+      <div class="table-wrap">
+        <table>
+          <tbody>
+            <tr><th>Project</th><td>Maven</td></tr>
+            <tr><th>Language</th><td>Java</td></tr>
+            <tr><th>Spring Boot</th><td>Versão estável 3.x disponível</td></tr>
+            <tr><th>Group</th><td>com.sistemaupa</td></tr>
+            <tr><th>Artifact</th><td>backend</td></tr>
+            <tr><th>Name</th><td>sistema-upa</td></tr>
+            <tr><th>Description</th><td>API acadêmica do Sistema UPA</td></tr>
+            <tr><th>Package name</th><td>com.sistemaupa</td></tr>
+            <tr><th>Packaging</th><td>Jar</td></tr>
+            <tr><th>Java</th><td>21</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Dependências obrigatórias</h3>
+      <div class="grid">
+        <div class="card"><h3>Spring Web</h3><p>Controllers, endpoints REST e JSON.</p></div>
+        <div class="card"><h3>Spring Data JPA</h3><p>Repositories e persistência.</p></div>
+        <div class="card"><h3>Validation</h3><p>Campos obrigatórios e regras de entrada.</p></div>
+        <div class="card"><h3>PostgreSQL Driver</h3><p>Conexão com o Neon.</p></div>
+        <div class="card"><h3>Lombok</h3><p>Opcional, somente se já foi ensinado.</p></div>
+      </div>
+
+      <h3>Depois de baixar</h3>
+      <ol>
+        <li>Extrair o ZIP.</li>
+        <li>Renomear a pasta para <code>backend</code>.</li>
+        <li>Colocar dentro do repositório.</li>
+        <li>Abrir a pasta no editor.</li>
+        <li>Executar o projeto antes de criar qualquer entidade.</li>
+      </ol>
+
+      <pre><code>cd backend
+
+# Windows
+mvnw.cmd spring-boot:run
+
+# Linux/macOS
+./mvnw spring-boot:run</code></pre>
+
+      <div class="success">Primeira validação: o projeto deve iniciar sem erro, mesmo antes de conectar ao banco.</div>
+    </section>
+
+    <section id="estrutura-inicial">
+      <h2 class="section-title">Estrutura inicial do repositório</h2>
+      <p class="lead">A estrutura completa deve ser criada em <code>feature/estrutura-inicial</code>.</p>
+
+      <pre><code>sistema-upa/
+├── frontend/
+│   ├── index.html
+│   ├── login.html
+│   ├── dashboard.html
+│   ├── balcao.html
+│   ├── triagem.html
+│   ├── painel.html
+│   ├── consultorio.html
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   ├── api.js
+│   │   ├── login.js
+│   │   ├── dashboard.js
+│   │   ├── balcao.js
+│   │   ├── triagem.js
+│   │   ├── painel.js
+│   │   └── consultorio.js
+│   └── assets/
+│
+├── backend/
+│   ├── pom.xml
+│   └── src/main/
+│       ├── java/com/sistemaupa/
+│       │   ├── config/
+│       │   ├── controller/
+│       │   ├── dto/
+│       │   ├── entity/
+│       │   ├── enums/
+│       │   ├── exception/
+│       │   ├── repository/
+│       │   └── service/
+│       └── resources/
+│           └── application.properties
+│
+├── docs/
+├── .gitignore
+└── README.md</code></pre>
+
+      <h3>Comandos</h3>
+      <pre><code>git checkout develop
+git pull origin develop
+git checkout -b feature/estrutura-inicial
+
+git add .
+git commit -m "chore: cria estrutura inicial do projeto"
+git push -u origin feature/estrutura-inicial</code></pre>
+
+      <p>Depois, abrir Pull Request de <code>feature/estrutura-inicial</code> para <code>develop</code>.</p>
+    </section>
+
+    <section id="sprint1">
+      <h2 class="section-title">Sprint 1 — Aulas 1 e 2</h2>
+      <p class="lead">Planejamento, requisitos, UML e preparação técnica. O foco ainda não é implementar o sistema completo.</p>
+
+      <h3>Aula 1 — Tarefas por integrante</h3>
+
+      <div class="card team-card">
+        <h3>Integrante 1 — Product Owner + Recepção</h3>
+        <ul>
+          <li>Escrever problema, público-alvo e objetivo.</li>
+          <li>Definir o que entra e o que fica fora do MVP.</li>
+          <li>Priorizar histórias.</li>
+          <li>Definir critérios de aceitação do login e balcão.</li>
+          <li>Validar campos do paciente e atendimento.</li>
+        </ul>
+        <strong>Entregas:</strong> visão do produto, backlog priorizado e critérios de aceite.
+      </div>
+
+      <div class="card team-card">
+        <h3>Integrante 2 — Scrum Master + Integração</h3>
+        <ul>
+          <li>Criar repositório.</li>
+          <li>Criar <code>develop</code>.</li>
+          <li>Criar Kanban com as seis colunas obrigatórias.</li>
+          <li>Aplicar limites WIP: 3 em desenvolvimento, 2 em revisão, 2 em testes.</li>
+          <li>Criar a branch <code>feature/estrutura-inicial</code>.</li>
+          <li>Adicionar integrantes como colaboradores.</li>
+        </ul>
+        <strong>Entregas:</strong> GitHub, Kanban e estrutura inicial.
+      </div>
+
+      <div class="card team-card">
+        <h3>Integrante 3 — Front-End Triagem</h3>
+        <ul>
+          <li>Desenhar wireframe da triagem.</li>
+          <li>Definir campos: sintomas, pressão, temperatura, frequência, dor, observação e classificação.</li>
+          <li>Definir como selecionar um paciente da fila.</li>
+          <li>Definir estados vazios e mensagens.</li>
+        </ul>
+        <strong>Entregas:</strong> protótipo da triagem.
+      </div>
+
+      <div class="card team-card">
+        <h3>Integrante 4 — Painel, Consultório e Admin</h3>
+        <ul>
+          <li>Desenhar painel público.</li>
+          <li>Desenhar consultório.</li>
+          <li>Desenhar dashboard e CRUD visual de funcionários.</li>
+          <li>Definir onde aparece senha, nome, destino e últimos chamados.</li>
+        </ul>
+        <strong>Entregas:</strong> três wireframes.
+      </div>
+
+      <div class="card team-card">
+        <h3>Integrante 5 — Back-End Usuários</h3>
+        <ul>
+          <li>Definir entidade Usuario.</li>
+          <li>Definir enum Cargo.</li>
+          <li>Definir endpoints de login e CRUD.</li>
+          <li>Definir validações de nome, e-mail, senha e cargo.</li>
+        </ul>
+        <strong>Entregas:</strong> modelo de Usuario e contratos da API.
+      </div>
+
+      <div class="card team-card">
+        <h3>Integrante 6 — Back-End Atendimento</h3>
+        <ul>
+          <li>Definir Paciente, Atendimento e Triagem.</li>
+          <li>Definir status do atendimento.</li>
+          <li>Definir regra de senha.</li>
+          <li>Definir fila da triagem e fila médica.</li>
+        </ul>
+        <strong>Entregas:</strong> modelo principal e regras de fila.
+      </div>
+
+      <div class="card team-card">
+        <h3>Integrante 7 — Banco, Prontuário e Testes</h3>
+        <ul>
+          <li>Definir Prontuario, Chamada e Solicitacao.</li>
+          <li>Montar DER.</li>
+          <li>Preparar coleção Postman vazia com pastas.</li>
+          <li>Definir dados fictícios de teste.</li>
+        </ul>
+        <strong>Entregas:</strong> DER inicial e coleção Postman.
+      </div>
+
+      <h3>Aula 2 — Trabalho conjunto</h3>
+      <ol>
+        <li>Daily de até 10 minutos.</li>
+        <li>Escrever requisitos funcionais e não funcionais.</li>
+        <li>Escrever histórias de usuário com pontos.</li>
+        <li>Criar diagrama de casos de uso.</li>
+        <li>Criar diagrama de classes.</li>
+        <li>Revisar modelo do banco.</li>
+        <li>Realizar Sprint Review.</li>
+        <li>Realizar Retrospective.</li>
+      </ol>
+
+      <div class="success">Sprint 1 só termina quando requisitos, UML, banco, backlog e Kanban estiverem revisados.</div>
+    </section>
+
+    <section id="sprint2">
+      <h2 class="section-title">Sprint 2 — Aulas 3 e 4</h2>
+      <p class="lead">Banco, Back-End, CRUDs, validações, erros e Postman.</p>
+
+      <h3>Aula 3 — O que cada dev codará</h3>
+
+      <div class="card team-card">
+        <h3>Integrante 5 — Usuários e login</h3>
+        <p><strong>Branches:</strong> <code>feature/usuarios</code> e <code>feature/login-api</code></p>
+        <p><strong>Arquivos:</strong></p>
+        <pre><code>entity/Usuario.java
+enums/Cargo.java
+repository/UsuarioRepository.java
+dto/LoginRequest.java
+service/UsuarioService.java
+controller/AuthController.java
+controller/UsuarioController.java</code></pre>
+        <p><strong>Deve implementar:</strong> CRUD completo, login simples, usuário ativo e e-mail único.</p>
+      </div>
+
+      <div class="card team-card">
+        <h3>Integrante 6 — Paciente, atendimento e triagem</h3>
+        <p><strong>Branch:</strong> <code>feature/atendimentos-api</code></p>
+        <pre><code>entity/Paciente.java
+entity/Atendimento.java
+entity/Triagem.java
+enums/StatusAtendimento.java
+enums/ClassificacaoRisco.java
+repository/PacienteRepository.java
+repository/AtendimentoRepository.java
+repository/TriagemRepository.java</code></pre>
+        <p><strong>Deve implementar:</strong> relacionamentos, senha, status inicial e consultas de fila.</p>
+      </div>
+
+      <div class="card team-card">
+        <h3>Integrante 7 — Área médica e banco</h3>
+        <p><strong>Branches:</strong> <code>feature/config-banco</code> e <code>feature/area-medica</code></p>
+        <pre><code>entity/Prontuario.java
+entity/Chamada.java
+entity/Solicitacao.java
+repository/ProntuarioRepository.java
+repository/ChamadaRepository.java
+repository/SolicitacaoRepository.java
+resources/application.properties</code></pre>
+        <p><strong>Deve implementar:</strong> conexão Neon, relacionamentos e tabelas.</p>
+      </div>
+
+      <h3>Aula 4 — Services e Controllers</h3>
+      <div class="grid">
+        <div class="card">
+          <h3>Integrante 5</h3>
+          <ul>
+            <li>Listar usuários.</li>
+            <li>Buscar ID.</li>
+            <li>Cadastrar.</li>
+            <li>Editar.</li>
+            <li>Excluir/desativar.</li>
+            <li>Login.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Integrante 6</h3>
+          <ul>
+            <li>CRUD de atendimento.</li>
+            <li>Geração de senha.</li>
+            <li>Fila da triagem.</li>
+            <li>Registrar triagem.</li>
+            <li>Fila médica ordenada.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Integrante 7</h3>
+          <ul>
+            <li>Criar chamada.</li>
+            <li>Última chamada.</li>
+            <li>Chamadas recentes.</li>
+            <li>Prontuário.</li>
+            <li>Solicitação.</li>
+            <li>Finalização.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Testes obrigatórios no Postman</h3>
+      <ul>
+        <li>Dados válidos.</li>
+        <li>Campos obrigatórios vazios.</li>
+        <li>E-mail duplicado.</li>
+        <li>ID inexistente.</li>
+        <li>Nível de dor menor que 0 ou maior que 10.</li>
+        <li>Relacionamentos.</li>
+      </ul>
+
+      <div class="success">Sprint 2 só termina quando os dois CRUDs estiverem completos e a coleção Postman estiver salva.</div>
+    </section>
+
+    <section id="sprint3">
+      <h2 class="section-title">Sprint 3 — Aulas 5 e 6</h2>
+      <p class="lead">Telas, CSS, JavaScript, fetch e integração.</p>
+
+      <h3>Aula 5 — Desenvolvimento visual</h3>
+
+      <div class="card team-card">
+        <h3>Integrante 1 — Login e Balcão</h3>
+        <p><strong>Branches:</strong> <code>feature/login</code>, <code>feature/balcao</code></p>
+        <pre><code>frontend/login.html
+frontend/balcao.html
+frontend/js/login.js
+frontend/js/balcao.js</code></pre>
+        <ul>
+          <li>Fazer login e redirecionar por cargo.</li>
+          <li>Montar formulário de atendimento.</li>
+          <li>Mostrar senha gerada.</li>
+          <li>Adicionar ambulância e pânico.</li>
+        </ul>
+      </div>
+
+      <div class="card team-card">
+        <h3>Integrante 2 — CSS, API e integração</h3>
+        <p><strong>Branches:</strong> <code>feature/css-base</code>, <code>feature/integracao-api</code></p>
+        <pre><code>frontend/css/style.css
+frontend/js/api.js
+frontend/index.html</code></pre>
+        <ul>
+          <li>Criar layout base.</li>
+          <li>Criar função central de fetch.</li>
+          <li>Criar mensagens padronizadas.</li>
+          <li>Revisar IDs e classes.</li>
+        </ul>
+      </div>
+
+      <div class="card team-card">
+        <h3>Integrante 3 — Triagem</h3>
+        <p><strong>Branch:</strong> <code>feature/triagem</code></p>
+        <pre><code>frontend/triagem.html
+frontend/js/triagem.js</code></pre>
+        <ul>
+          <li>Listar fila.</li>
+          <li>Selecionar atendimento.</li>
+          <li>Chamar para triagem.</li>
+          <li>Registrar sinais.</li>
+          <li>Classificar risco.</li>
+        </ul>
+      </div>
+
+      <div class="card team-card">
+        <h3>Integrante 4 — Painel, Médico e Admin</h3>
+        <p><strong>Branches:</strong> <code>feature/painel</code>, <code>feature/consultorio</code>, <code>feature/dashboard</code></p>
+        <pre><code>frontend/painel.html
+frontend/js/painel.js
+frontend/consultorio.html
+frontend/js/consultorio.js
+frontend/dashboard.html
+frontend/js/dashboard.js</code></pre>
+        <ul>
+          <li>Atualizar painel a cada 2 segundos.</li>
+          <li>Narrar apenas chamada nova.</li>
+          <li>Listar fila médica.</li>
+          <li>Registrar prontuário.</li>
+          <li>Gerenciar funcionários no dashboard.</li>
+        </ul>
+      </div>
+
+      <h3>Aula 6 — Integração</h3>
+      <ol>
+        <li>Ligar cada formulário à API.</li>
+        <li>Tratar respostas de erro.</li>
+        <li>Atualizar listagens automaticamente.</li>
+        <li>Corrigir CORS.</li>
+        <li>Testar login por perfil.</li>
+        <li>Testar fluxo em abas diferentes.</li>
+        <li>Review e Retrospective.</li>
+      </ol>
+
+      <div class="success">Sprint 3 só termina quando o fluxo completo funcionar pelo navegador.</div>
+    </section>
+
+    <section id="sprint4">
+      <h2 class="section-title">Sprint 4 — Aulas 7 e 8</h2>
+      <p class="lead">Testes, correções, README e apresentação final.</p>
+
+      <h3>Aula 7 — Matriz de testes</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Integrante</th><th>Responsabilidade de teste</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Login, balcão e validação dos formulários.</td></tr>
+            <tr><td>2</td><td>Navegação, CSS, responsividade, CORS e Kanban.</td></tr>
+            <tr><td>3</td><td>Triagem, classificação, filas e dados inválidos.</td></tr>
+            <tr><td>4</td><td>Painel, áudio, consultório e dashboard.</td></tr>
+            <tr><td>5</td><td>Login, CRUD de usuários e erros.</td></tr>
+            <tr><td>6</td><td>CRUD de atendimento, triagem e ordenação.</td></tr>
+            <tr><td>7</td><td>Banco, prontuário, chamadas, solicitações e Postman.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Aula 8 — Apresentação</h3>
+      <ol>
+        <li>Abrir recepção em um PC.</li>
+        <li>Abrir triagem em outro PC.</li>
+        <li>Abrir consultório em outro PC.</li>
+        <li>Abrir admin em outro PC.</li>
+        <li>Abrir painel no projetor.</li>
+        <li>Testar volume e Web Speech API.</li>
+        <li>Executar o fluxo completo.</li>
+      </ol>
     </section>
 
     <section id="visao"><h2 class="section-title">Visão do produto</h2><div class="grid"><div class="card"><h3>Problema</h3><p>Organizar recepção, triagem, fila e atendimento.</p></div><div class="card"><h3>Público</h3><p>Recepcionista, enfermeiro, médico e administrador.</p></div><div class="card"><h3>Objetivo</h3><p>Entregar um MVP fullstack pequeno e funcional.</p></div><div class="card"><h3>Apresentação</h3><p>Simular o fluxo em computadores diferentes.</p></div></div></section>
