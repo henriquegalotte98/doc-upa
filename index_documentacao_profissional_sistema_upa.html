@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema UPA — Documentação Oficial</title>
+<style>
+:root{
+  --bg:#f4f7fb;--surface:#fff;--surface2:#edf3f7;--text:#17222c;--muted:#667784;
+  --primary:#087f8c;--primary2:#0ea5a8;--border:#d8e2e8;--shadow:0 16px 45px rgba(18,52,68,.10);
+  --radius:18px;--sidebar:310px;--code:#10202b;--success:#2e7d32;--warning:#ef6c00;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.65}
+body.dark{--bg:#0d171f;--surface:#16232d;--surface2:#1d2c37;--text:#edf4f8;--muted:#a8bac7;--border:#2c3d49;--shadow:0 16px 45px rgba(0,0,0,.28);--code:#091118}
+button,input{font:inherit}
+aside{position:fixed;inset:0 auto 0 0;width:var(--sidebar);padding:28px 22px;overflow:auto;color:white;background:linear-gradient(180deg,#075a64,#063e46);z-index:100}
+.brand{display:flex;gap:13px;align-items:center;margin-bottom:22px}
+.logo{width:52px;height:52px;display:grid;place-items:center;border-radius:16px;background:white;color:var(--primary);font-size:28px;font-weight:900}
+.brand h1{margin:0;font-size:1.08rem;line-height:1.2}
+.brand small{opacity:.7}
+.search{width:100%;padding:12px 13px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.09);color:white;outline:none}
+.search::placeholder{color:rgba(255,255,255,.65)}
+.nav-title{margin:20px 10px 7px;font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;opacity:.5;font-weight:800}
+nav a{display:block;padding:9px 11px;margin:3px 0;border-radius:10px;color:rgba(255,255,255,.82);text-decoration:none;font-size:.91rem}
+nav a:hover,nav a.active{background:rgba(255,255,255,.14);color:white}
+main{margin-left:var(--sidebar)}
+.hero{padding:68px clamp(24px,6vw,90px);color:white;background:radial-gradient(circle at 84% 18%,rgba(255,255,255,.14),transparent 27%),linear-gradient(135deg,#075a64,#0899aa)}
+.hero h2{font-size:clamp(2.6rem,5vw,5rem);line-height:1.02;margin:10px 0 18px;letter-spacing:-.05em}
+.hero p{max-width:820px;font-size:1.12rem;opacity:.9}
+.badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+.badge{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.1);font-size:.84rem}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}
+.actions button{padding:11px 15px;border:0;border-radius:11px;cursor:pointer;font-weight:800}
+.primary{background:white;color:#075a64}
+.ghost{background:rgba(255,255,255,.12);color:white;border:1px solid rgba(255,255,255,.22)!important}
+.content{max-width:1180px;margin:auto;padding:42px clamp(20px,5vw,70px) 90px}
+section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:clamp(24px,4vw,42px);margin-bottom:28px;box-shadow:var(--shadow)}
+section[hidden]{display:none}
+.section-title{font-size:clamp(1.75rem,3vw,2.4rem);margin:0 0 8px;letter-spacing:-.03em}
+.lead{color:var(--muted);font-size:1.04rem;margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{padding:20px;border:1px solid var(--border);border-radius:15px;background:var(--surface2)}
+.card h3{margin-top:0}
+.kpi{padding:18px;border-radius:15px;border:1px solid var(--border);background:var(--surface2)}
+.kpi span{display:block;color:var(--muted);font-size:.82rem}
+.kpi strong{font-size:1.55rem}
+.note,.warning,.success{padding:17px 19px;border-radius:13px;margin:20px 0;border-left:5px solid}
+.note{background:#eaf8fa;border-color:#14a3b8;color:#164e56}
+.warning{background:#fff4e2;border-color:var(--warning);color:#694300}
+.success{background:#eaf7ed;border-color:var(--success);color:#245c2d}
+body.dark .note{background:#15353a;color:#bcebf0}
+body.dark .warning{background:#3a2b14;color:#ffdda8}
+body.dark .success{background:#19351f;color:#bee8c5}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:22px 0}
+.flow span{padding:10px 13px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);font-weight:800}
+.flow b{color:var(--primary);font-size:1.2rem}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.93rem}
+th,td{padding:12px 13px;border:1px solid var(--border);text-align:left;vertical-align:top}
+th{background:var(--surface2)}
+.table-wrap{overflow:auto}
+.timeline{display:grid;gap:15px}
+.sprint{display:grid;grid-template-columns:130px 1fr;gap:18px;padding:18px;border-radius:15px;border:1px solid var(--border);background:var(--surface2)}
+.sprint-label{display:grid;place-items:center;border-radius:13px;background:var(--primary);color:white;font-weight:900;text-align:center;min-height:110px}
+.team-card{border-top:4px solid var(--primary2)}
+.owner{display:inline-flex;padding:5px 9px;border-radius:999px;background:rgba(8,127,140,.12);color:var(--primary);font-size:.75rem;font-weight:900}
+.file-card{margin:18px 0;padding:20px;border:1px solid var(--border);border-radius:15px;background:var(--surface2)}
+.file-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.file-meta div{padding:10px;border-radius:10px;background:var(--surface)}
+.file-meta span{display:block;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em}
+details{margin-top:14px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+summary{padding:14px 16px;cursor:pointer;font-weight:800}
+pre{position:relative;margin:0;padding:20px;overflow:auto;background:var(--code);color:#e6f1f6;font-size:.86rem;line-height:1.55}
+.copy{position:absolute;right:10px;top:10px;border:1px solid #3b4f5e;background:#20313e;color:white;border-radius:8px;padding:6px 9px;cursor:pointer}
+.code-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0;padding-bottom:13px;border-bottom:1px solid var(--border)}
+.code-tab{padding:9px 13px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);color:var(--text);font-weight:800;cursor:pointer}
+.code-tab.active{background:var(--primary);color:white}
+.code-panel{display:none}
+.code-panel.active{display:block}
+.kanban{display:grid;grid-template-columns:repeat(6,minmax(180px,1fr));gap:12px;overflow:auto}
+.kanban-col{min-width:180px;padding:14px;border-radius:12px;background:var(--surface2);border:1px solid var(--border)}
+.ticket{padding:10px;margin:8px 0;border-radius:9px;background:var(--surface);border:1px solid var(--border);font-size:.84rem}
+.checklist{list-style:none;padding:0}
+.checklist li{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.checklist input{margin-top:5px}
+.top{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border:0;border-radius:50%;background:var(--primary);color:white;display:none;cursor:pointer;box-shadow:var(--shadow)}
+.top.visible{display:block}
+.mobile{display:none;position:sticky;top:0;z-index:90;padding:12px 16px;background:var(--surface);border-bottom:1px solid var(--border);justify-content:space-between;align-items:center}
+.mobile button{width:42px;height:42px;border:1px solid var(--border);border-radius:10px;background:var(--surface2);color:var(--text)}
+@media(max-width:1050px){aside{transform:translateX(-100%);transition:.25s}aside.open{transform:translateX(0)}main{margin-left:0}.mobile{display:flex}}
+@media(max-width:780px){.grid,.grid3{grid-template-columns:1fr}.sprint{grid-template-columns:1fr}.file-meta{grid-template-columns:1fr 1fr}}
+@media print{aside,.mobile,.actions,.top,.copy{display:none!important}main{margin:0}body{background:white;color:black}section{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="mobile">
+  <button id="menuBtn">☰</button>
+  <strong>Sistema UPA</strong>
+  <button class="themeBtn">◐</button>
+</header>
+
+<aside id="sidebar">
+  <div class="brand"><div class="logo">✚</div><div><h1>Sistema UPA</h1><small>Documentação oficial</small></div></div>
+  <input id="search" class="search" placeholder="Pesquisar na documentação...">
+  <nav>
+    <div class="nav-title">Visão geral</div>
+    <a href="#dashboard">Dashboard</a><a href="#visao">Visão</a><a href="#escopo">MVP</a><a href="#equipe">Equipe</a>
+    <div class="nav-title">Planejamento</div>
+    <a href="#cronograma">Cronograma</a><a href="#scrum">Scrum/Kanban</a><a href="#requisitos">Requisitos</a><a href="#historias">Histórias</a><a href="#git">Git</a>
+    <div class="nav-title">Sistema</div>
+    <a href="#perfis">Login e perfis</a><a href="#arquitetura">Arquitetura</a><a href="#banco">Banco</a><a href="#api">API</a><a href="#simulacao">Simulação</a><a href="#deploy">Nuvem</a>
+    <div class="nav-title">Construção</div>
+    <a href="#responsabilidades">Responsabilidades</a><a href="#codigos">Códigos</a><a href="#testes">Testes</a><a href="#entrega">Entrega</a>
+  </nav>
+</aside>
+
+<main>
+  <div class="hero">
+    <small>PROJETO FULLSTACK EM EQUIPE</small>
+    <h2>Sistema UPA</h2>
+    <p>Documentação central para planejamento, desenvolvimento, testes e apresentação do sistema acadêmico.</p>
+    <div class="badges"><span class="badge">7 integrantes</span><span class="badge">8 aulas</span><span class="badge">4 Sprints</span><span class="badge">Java 21</span><span class="badge">Spring Boot</span><span class="badge">Multi-PC</span></div>
+    <div class="actions"><button class="primary" onclick="document.querySelector('#dashboard').scrollIntoView()">Abrir guia</button><button class="ghost themeBtn">Tema</button><button class="ghost" onclick="window.print()">PDF</button></div>
+  </div>
+
+  <div class="content">
+    <section id="dashboard">
+      <h2 class="section-title">Dashboard do projeto</h2>
+      <p class="lead">Resumo para consulta no começo de cada aula.</p>
+      <div class="grid3">
+        <div class="kpi"><span>Equipe</span><strong>7 pessoas</strong></div><div class="kpi"><span>Prazo</span><strong>8 aulas</strong></div><div class="kpi"><span>Sprints</span><strong>4</strong></div>
+        <div class="kpi"><span>CRUD principal</span><strong>Atendimento</strong></div><div class="kpi"><span>CRUD secundário</span><strong>Funcionário</strong></div><div class="kpi"><span>Demo</span><strong>Várias máquinas</strong></div>
+      </div>
+      <div class="warning"><strong>Atenção:</strong> o material do professor exige MySQL. A equipe escolheu Neon/PostgreSQL e publicação em nuvem; confirmem essa substituição com o professor.</div>
+    </section>
+
+    <section id="visao"><h2 class="section-title">Visão do produto</h2><div class="grid"><div class="card"><h3>Problema</h3><p>Organizar recepção, triagem, fila e atendimento.</p></div><div class="card"><h3>Público</h3><p>Recepcionista, enfermeiro, médico e administrador.</p></div><div class="card"><h3>Objetivo</h3><p>Entregar um MVP fullstack pequeno e funcional.</p></div><div class="card"><h3>Apresentação</h3><p>Simular o fluxo em computadores diferentes.</p></div></div></section>
+
+    <section id="escopo"><h2 class="section-title">Escopo do MVP</h2><div class="grid"><div class="card"><h3>Incluído</h3><ul><li>Login simples.</li><li>CRUD de funcionários.</li><li>Cadastro de atendimento.</li><li>Triagem.</li><li>Painel com narração.</li><li>Prontuário simplificado.</li></ul></div><div class="card"><h3>Não incluído</h3><ul><li>JWT.</li><li>Recuperação de senha.</li><li>Integração com SUS.</li><li>IA médica.</li><li>Relatórios complexos.</li></ul></div></div></section>
+
+    <section id="equipe"><h2 class="section-title">Equipe e papéis</h2><div class="grid3"><div class="card team-card"><span class="owner">PO</span><h3>Integrante 1</h3><p>Prioridades e recepção.</p></div><div class="card team-card"><span class="owner">Scrum Master</span><h3>Integrante 2</h3><p>Kanban, integração e CSS.</p></div><div class="card team-card"><span class="owner">Front-End</span><h3>Integrante 3</h3><p>Triagem.</p></div><div class="card team-card"><span class="owner">Front-End</span><h3>Integrante 4</h3><p>Painel e consultório.</p></div><div class="card team-card"><span class="owner">Back-End</span><h3>Integrante 5</h3><p>Login e usuários.</p></div><div class="card team-card"><span class="owner">Back-End</span><h3>Integrante 6</h3><p>Paciente e atendimento.</p></div><div class="card team-card"><span class="owner">Banco/Testes</span><h3>Integrante 7</h3><p>Prontuário, chamadas e Postman.</p></div></div></section>
+
+    <section id="cronograma"><h2 class="section-title">Cronograma — 8 aulas</h2><div class="timeline">
+      <div class="sprint"><div class="sprint-label">Sprint 1<br>Aulas 1–2</div><div><h3>Planejamento e UML</h3><ul><li>Visão, backlog e Kanban.</li><li>Requisitos.</li><li>Casos de uso, classes e banco.</li></ul></div></div>
+      <div class="sprint"><div class="sprint-label">Sprint 2<br>Aulas 3–4</div><div><h3>Banco e API</h3><ul><li>Spring Boot.</li><li>CRUDs.</li><li>Validação e Postman.</li></ul></div></div>
+      <div class="sprint"><div class="sprint-label">Sprint 3<br>Aulas 5–6</div><div><h3>Front-End e integração</h3><ul><li>HTML/CSS/JS.</li><li>Fetch.</li><li>Painel e narração.</li></ul></div></div>
+      <div class="sprint"><div class="sprint-label">Sprint 4<br>Aulas 7–8</div><div><h3>Testes e apresentação</h3><ul><li>Correções.</li><li>README.</li><li>Ensaio multi-PC.</li></ul></div></div>
+    </div></section>
+
+    <section id="scrum"><h2 class="section-title">Scrum e Kanban</h2><div class="kanban"><div class="kanban-col"><h4>Backlog</h4><div class="ticket">Todas as histórias</div></div><div class="kanban-col"><h4>Pronto</h4><div class="ticket">Entendida</div></div><div class="kanban-col"><h4>Desenvolvimento</h4><div class="ticket">Máx. 3</div></div><div class="kanban-col"><h4>Revisão</h4><div class="ticket">Máx. 2</div></div><div class="kanban-col"><h4>Testes</h4><div class="ticket">Máx. 2</div></div><div class="kanban-col"><h4>Concluído</h4><div class="ticket">PO validou</div></div></div></section>
+
+    <section id="requisitos"><h2 class="section-title">Requisitos</h2><div class="table-wrap"><table><thead><tr><th>ID</th><th>Requisito</th></tr></thead><tbody><tr><td>RF01</td><td>Login por e-mail e senha.</td></tr><tr><td>RF02</td><td>Redirecionamento por cargo.</td></tr><tr><td>RF03</td><td>CRUD de funcionários pelo admin.</td></tr><tr><td>RF04</td><td>Cadastro de paciente e atendimento.</td></tr><tr><td>RF05</td><td>Triagem e classificação.</td></tr><tr><td>RF06</td><td>Chamada e narração.</td></tr><tr><td>RF07</td><td>Prontuário e finalização.</td></tr></tbody></table></div></section>
+
+    <section id="historias"><h2 class="section-title">Histórias de usuário</h2><div class="grid"><div class="card"><h3>HU01</h3><p>Como funcionário, quero entrar no sistema para acessar minha área.</p></div><div class="card"><h3>HU02</h3><p>Como admin, quero cadastrar funcionários e atribuir cargos.</p></div><div class="card"><h3>HU03</h3><p>Como recepcionista, quero gerar um atendimento.</p></div><div class="card"><h3>HU04</h3><p>Como enfermeiro, quero classificar o risco.</p></div><div class="card"><h3>HU05</h3><p>Como médico, quero registrar o atendimento.</p></div><div class="card"><h3>HU06</h3><p>Como paciente, quero ouvir minha chamada.</p></div></div></section>
+
+    <section id="git"><h2 class="section-title">Git</h2><div class="warning">Para seguir o documento do professor, usem <code>main → develop → feature/fix</code>.</div><pre><code>main
+└── develop
+    ├── feature/login
+    ├── feature/balcao
+    ├── feature/triagem
+    ├── feature/painel
+    ├── feature/consultorio
+    └── fix/nome-da-correcao</code></pre></section>
+
+    <section id="perfis"><h2 class="section-title">Login e perfis</h2><div class="table-wrap"><table><thead><tr><th>Cargo</th><th>Tela</th><th>Acesso</th></tr></thead><tbody><tr><td>RECEPCIONISTA</td><td>Balcão</td><td>Pacientes e atendimentos.</td></tr><tr><td>ENFERMEIRO</td><td>Triagem</td><td>Fila e classificação.</td></tr><tr><td>MEDICO</td><td>Consultório</td><td>Prontuário e finalização.</td></tr><tr><td>ADMIN</td><td>Dashboard</td><td>Todas as áreas e funcionários.</td></tr></tbody></table></div><div class="note">Login simples com LocalStorage. JWT fica como melhoria futura.</div></section>
+
+    <section id="arquitetura"><h2 class="section-title">Arquitetura</h2><pre><code>Máquinas da sala
+      ↓
+Vercel — Front-End
+      ↓ HTTPS / JSON
+Railway — Spring Boot
+      ↓ JPA / JDBC
+Neon — PostgreSQL</code></pre></section>
+
+    <section id="banco"><h2 class="section-title">Banco de dados</h2><pre><code>USUARIO
+
+PACIENTE
+   ↓ 1:N
+ATENDIMENTO
+   ├── 1:1 TRIAGEM
+   ├── 1:1 PRONTUARIO
+   └── 1:N CHAMADA
+
+PRONTUARIO
+   ↓ 1:N
+SOLICITACAO</code></pre></section>
+
+    <section id="api"><h2 class="section-title">API REST</h2><div class="table-wrap"><table><thead><tr><th>Método</th><th>Endpoint</th><th>Responsável</th></tr></thead><tbody><tr><td>POST</td><td>/api/auth/login</td><td>5</td></tr><tr><td>CRUD</td><td>/api/usuarios</td><td>5</td></tr><tr><td>CRUD</td><td>/api/atendimentos</td><td>6</td></tr><tr><td>GET/POST</td><td>/api/triagens</td><td>6</td></tr><tr><td>GET/POST</td><td>/api/chamadas</td><td>7</td></tr><tr><td>GET/POST</td><td>/api/prontuarios</td><td>7</td></tr></tbody></table></div></section>
+
+    <section id="simulacao"><h2 class="section-title">Simulação em sala</h2><div class="grid"><div class="card"><h3>PC 1</h3><p>Recepção.</p></div><div class="card"><h3>PC 2</h3><p>Triagem.</p></div><div class="card"><h3>PC 3</h3><p>Médico.</p></div><div class="card"><h3>PC 4</h3><p>Admin.</p></div><div class="card"><h3>Projetor</h3><p>Painel e narração.</p></div></div><div class="flow"><span>Cadastro</span><b>→</b><span>Triagem</span><b>→</b><span>Narração</span><b>→</b><span>Médico</span><b>→</b><span>Finalização</span></div></section>
+
+    <section id="deploy"><h2 class="section-title">Nuvem desde o início</h2><ol><li>Criar Neon.</li><li>Publicar API mínima no Railway.</li><li>Publicar página mínima no Vercel.</li><li>Configurar CORS.</li><li>Evoluir os serviços durante as Sprints.</li></ol></section>
+
+    <section id="responsabilidades"><h2 class="section-title">Responsabilidades por arquivo</h2><div class="table-wrap"><table><thead><tr><th>Integrante</th><th>Área</th><th>Arquivos</th></tr></thead><tbody><tr><td>1</td><td>PO + Recepção</td><td>login.html, balcao.html, balcao.js</td></tr><tr><td>2</td><td>Scrum + Integração</td><td>index.html, style.css, script.js, documentação</td></tr><tr><td>3</td><td>Triagem</td><td>triagem.html, triagem.js</td></tr><tr><td>4</td><td>Painel/Médico</td><td>painel.html, painel.js, consultorio.html</td></tr><tr><td>5</td><td>Usuários</td><td>Usuario.java, AuthController, UsuarioController</td></tr><tr><td>6</td><td>Atendimento</td><td>Paciente, Atendimento, Triagem</td></tr><tr><td>7</td><td>Banco/Testes</td><td>Prontuario, Chamada, Solicitação, Postman</td></tr></tbody></table></div></section>
+
+    <section id="codigos"><h2 class="section-title">Códigos por arquivo</h2><div class="code-tabs"><button class="code-tab active" data-tab="front">Front-End</button><button class="code-tab" data-tab="back">Back-End</button></div><div class="code-panel active" data-panel="front">
+<article class="file-card">
+  <div class="file-meta">
+    <div><span>Arquivo</span><strong>frontend/index.html</strong></div>
+    <div><span>Responsável</span><strong>Integrante 2</strong></div>
+    <div><span>Branch</span><strong>feature/estrutura-frontend</strong></div>
+    <div><span>Sprint</span><strong>Sprint 3</strong></div>
+  </div>
+  <p>Estrutura inicial do Front-End.</p>
+  <details>
+    <summary>Ver código completo</summary>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;pt-BR&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Sistema UPA&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main id=&quot;app&quot;&gt;&lt;/main&gt;
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  </details>
+</article>
+
+<article class="file-card">
+  <div class="file-meta">
+    <div><span>Arquivo</span><strong>frontend/style.css</strong></div>
+    <div><span>Responsável</span><strong>Integrante 2</strong></div>
+    <div><span>Branch</span><strong>feature/css-base</strong></div>
+    <div><span>Sprint</span><strong>Sprint 3</strong></div>
+  </div>
+  <p>CSS propositalmente básico para a equipe customizar.</p>
+  <details>
+    <summary>Ver código completo</summary>
+    <pre><code>/* CSS básico para customização da equipe */
+:root {
+  --primary: #087f8c;
+  --background: #f3f6f8;
+  --surface: #ffffff;
+  --border: #d8e2e8;
+  --text: #17222c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  background: var(--background);
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+.container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.hidden { display: none; }</code></pre>
+  </details>
+</article>
+
+<article class="file-card">
+  <div class="file-meta">
+    <div><span>Arquivo</span><strong>frontend/script.js</strong></div>
+    <div><span>Responsável</span><strong>Integrante 2</strong></div>
+    <div><span>Branch</span><strong>feature/integracao-api</strong></div>
+    <div><span>Sprint</span><strong>Sprint 3</strong></div>
+  </div>
+  <p>Centraliza a URL da API e o usuário logado.</p>
+  <details>
+    <summary>Ver código completo</summary>
+    <pre><code>const API_URL =
+  location.hostname === &quot;localhost&quot; || location.hostname === &quot;127.0.0.1&quot;
+    ? &quot;http://localhost:8080/api&quot;
+    : &quot;https://SEU-BACKEND.up.railway.app/api&quot;;
+
+const session = {
+  getUser() {
+    return JSON.parse(localStorage.getItem(&quot;usuario&quot;));
+  },
+  setUser(user) {
+    localStorage.setItem(&quot;usuario&quot;, JSON.stringify(user));
+  },
+  clear() {
+    localStorage.removeItem(&quot;usuario&quot;);
+  }
+};
+
+async function api(path, options = {}) {
+  const response = await fetch(`${API_URL}${path}`, {
+    headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+    ...options
+  });
+
+  if (!response.ok) {
+    throw new Error(&quot;Não foi possível concluir a operação.&quot;);
+  }
+
+  if (response.status === 204) return null;
+  return response.json();
+}
+
+function redirecionarPorCargo(cargo) {
+  const rotas = {
+    ADMIN: &quot;dashboard.html&quot;,
+    RECEPCIONISTA: &quot;balcao.html&quot;,
+    ENFERMEIRO: &quot;triagem.html&quot;,
+    MEDICO: &quot;consultorio.html&quot;
+  };
+
+  location.href = rotas[cargo] || &quot;login.html&quot;;
+}</code></pre>
+  </details>
+</article>
+
+<article class="file-card">
+  <div class="file-meta">
+    <div><span>Arquivo</span><strong>frontend/login.html</strong></div>
+    <div><span>Responsável</span><strong>Integrante 1</strong></div>
+    <div><span>Branch</span><strong>feature/login</strong></div>
+    <div><span>Sprint</span><strong>Sprint 3</strong></div>
+  </div>
+  <p>Tela de login e redirecionamento por cargo.</p>
+  <details>
+    <summary>Ver código completo</summary>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;pt-BR&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Login — Sistema UPA&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main class=&quot;container&quot;&gt;
+    &lt;section class=&quot;card&quot;&gt;
+      &lt;h1&gt;Entrar&lt;/h1&gt;
+
+      &lt;form id=&quot;formLogin&quot;&gt;
+        &lt;input name=&quot;email&quot; type=&quot;email&quot; placeholder=&quot;E-mail&quot; required&gt;
+        &lt;input name=&quot;senha&quot; type=&quot;password&quot; placeholder=&quot;Senha&quot; required&gt;
+        &lt;button&gt;Entrar&lt;/button&gt;
+      &lt;/form&gt;
+
+      &lt;p id=&quot;mensagem&quot;&gt;&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    document.getElementById(&quot;formLogin&quot;).addEventListener(&quot;submit&quot;, async event =&gt; {
+      event.preventDefault();
+
+      const dados = Object.fromEntries(new FormData(event.target));
+
+      try {
+        const usuario = await api(&quot;/auth/login&quot;, {
+          method: &quot;POST&quot;,
+          body: JSON.stringify(dados)
+        });
+
+        session.setUser(usuario);
+        redirecionarPorCargo(usuario.cargo);
+      } catch (error) {
+        document.getElementById(&quot;mensagem&quot;).textContent = error.message;
+      }
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  </details>
+</article>
+
+<article class="file-card">
+  <div class="file-meta">
+    <div><span>Arquivo</span><strong>frontend/painel.html</strong></div>
+    <div><span>Responsável</span><strong>Integrante 4</strong></div>
+    <div><span>Branch</span><strong>feature/painel</strong></div>
+    <div><span>Sprint</span><strong>Sprint 3</strong></div>
+  </div>
+  <p>Painel público do projetor com narração.</p>
+  <details>
+    <summary>Ver código completo</summary>
+    <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;pt-BR&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Painel de Chamadas&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;main class=&quot;container&quot;&gt;
+    &lt;section class=&quot;card&quot;&gt;
+      &lt;p&gt;Paciente chamado&lt;/p&gt;
+      &lt;h1 id=&quot;senha&quot;&gt;Aguardando&lt;/h1&gt;
+      &lt;h2 id=&quot;nome&quot;&gt;—&lt;/h2&gt;
+      &lt;p id=&quot;destino&quot;&gt;—&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    let ultimaNarrada = null;
+
+    function narrar(chamada) {
+      const texto =
+        `Paciente ${chamada.atendimento.paciente.nome}, ` +
+        `senha ${chamada.atendimento.senha}, ` +
+        `dirija-se a ${chamada.sala}.`;
+
+      speechSynthesis.cancel();
+
+      const mensagem = new SpeechSynthesisUtterance(texto);
+      mensagem.lang = &quot;pt-BR&quot;;
+      mensagem.rate = 0.9;
+
+      speechSynthesis.speak(mensagem);
+    }
+
+    async function atualizarPainel() {
+      const chamada = await api(&quot;/chamadas/ultima&quot;);
+      if (!chamada) return;
+
+      document.getElementById(&quot;senha&quot;).textContent = chamada.atendimento.senha;
+      document.getElementById(&quot;nome&quot;).textContent =
+        chamada.atendimento.paciente.nome;
+      document.getElementById(&quot;destino&quot;).textContent = chamada.sala;
+
+      if (chamada.id !== ultimaNarrada) {
+        ultimaNarrada = chamada.id;
+        narrar(chamada);
+      }
+    }
+
+    atualizarPainel();
+    setInterval(atualizarPainel, 2000);
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  </details>
+</article>
+</div><div class="code-panel" data-panel="back">
+<article class="file-card">
+  <div class="file-meta">
+    <div><span>Arquivo</span><strong>backend/pom.xml</strong></div>
+    <div><span>Responsável</span><strong>Integrante 5</strong></div>
+    <div><span>Branch</span><strong>feature/estrutura-backend</strong></div>
+    <div><span>Sprint</span><strong>Sprint 2</strong></div>
+  </div>
+  <p>Dependências do projeto Spring Boot.</p>
+  <details>
+    <summary>Ver código completo</summary>
+    <pre><code>&lt;project&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+  &lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;3.5.0&lt;/version&gt;
+  &lt;/parent&gt;
+
+  &lt;groupId&gt;com.sistemaupa&lt;/groupId&gt;
+  &lt;artifactId&gt;backend&lt;/artifactId&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+
+  &lt;properties&gt;
+    &lt;java.version&gt;21&lt;/java.version&gt;
+  &lt;/properties&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-data-jpa&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-validation&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.postgresql&lt;/groupId&gt;
+      &lt;artifactId&gt;postgresql&lt;/artifactId&gt;
+      &lt;scope&gt;runtime&lt;/scope&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/project&gt;</code></pre>
+  </details>
+</article>
+
+<article class="file-card">
+  <div class="file-meta">
+    <div><span>Arquivo</span><strong>backend/application.properties</strong></div>
+    <div><span>Responsável</span><strong>Integrante 7</strong></div>
+    <div><span>Branch</span><strong>feature/config-banco</strong></div>
+    <div><span>Sprint</span><strong>Sprint 2</strong></div>
+  </div>
+  <p>Configuração do Railway e Neon.</p>
+  <details>
+    <summary>Ver código completo</summary>
+    <pre><code>spring.application.name=sistema-upa
+
+server.address=0.0.0.0
+server.port=${PORT:8080}
+
+spring.datasource.url=${DATABASE_URL}
+spring.datasource.username=${DATABASE_USERNAME}
+spring.datasource.password=${DATABASE_PASSWORD}
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.open-in-view=false
+
+app.frontend.url=${FRONTEND_URL:http://127.0.0.1:5500}</code></pre>
+  </details>
+</article>
+
+<article class="file-card">
+  <div class="file-meta">
+    <div><span>Arquivo</span><strong>backend/Cargo.java</strong></div>
+    <div><span>Responsável</span><strong>Integrante 5</strong></div>
+    <div><span>Branch</span><strong>feature/usuarios</strong></div>
+    <div><span>Sprint</span><strong>Sprint 2</strong></div>
+  </div>
+  <p>Enum de cargos do sistema.</p>
+  <details>
+    <summary>Ver código completo</summary>
+    <pre><code>package com.sistemaupa.enums;
+
+public enum Cargo {
+  ADMIN,
+  RECEPCIONISTA,
+  ENFERMEIRO,
+  MEDICO
+}</code></pre>
+  </details>
+</article>
+
+<article class="file-card">
+  <div class="file-meta">
+    <div><span>Arquivo</span><strong>backend/Usuario.java</strong></div>
+    <div><span>Responsável</span><strong>Integrante 5</strong></div>
+    <div><span>Branch</span><strong>feature/usuarios</strong></div>
+    <div><span>Sprint</span><strong>Sprint 2</strong></div>
+  </div>
+  <p>Entidade usada pelo CRUD de funcionários e pelo login.</p>
+  <details>
+    <summary>Ver código completo</summary>
+    <pre><code>package com.sistemaupa.entity;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = &quot;usuarios&quot;)
+public class Usuario {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  @Column(nullable = false)
+  private String nome;
+
+  @Column(nullable = false, unique = true)
+  private String email;
+
+  @Column(nullable = false)
+  private String senha;
+
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  private Cargo cargo;
+
+  @Column(nullable = false)
+  private boolean ativo;
+
+  // getters e setters
+}</code></pre>
+  </details>
+</article>
+
+<article class="file-card">
+  <div class="file-meta">
+    <div><span>Arquivo</span><strong>backend/AuthController.java</strong></div>
+    <div><span>Responsável</span><strong>Integrante 5</strong></div>
+    <div><span>Branch</span><strong>feature/login-api</strong></div>
+    <div><span>Sprint</span><strong>Sprint 2</strong></div>
+  </div>
+  <p>Endpoint de login simples para o MVP.</p>
+  <details>
+    <summary>Ver código completo</summary>
+    <pre><code>package com.sistemaupa.controller;
+
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping(&quot;/api/auth&quot;)
+public class AuthController {
+
+  private final UsuarioRepository repository;
+
+  public AuthController(UsuarioRepository repository) {
+    this.repository = repository;
+  }
+
+  @PostMapping(&quot;/login&quot;)
+  public Usuario login(@RequestBody LoginRequest request) {
+    return repository
+      .findByEmailAndSenhaAndAtivoTrue(request.email(), request.senha())
+      .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Login inválido.&quot;));
+  }
+}</code></pre>
+  </details>
+</article>
+
+<article class="file-card">
+  <div class="file-meta">
+    <div><span>Arquivo</span><strong>backend/UsuarioController.java</strong></div>
+    <div><span>Responsável</span><strong>Integrante 5</strong></div>
+    <div><span>Branch</span><strong>feature/crud-usuarios</strong></div>
+    <div><span>Sprint</span><strong>Sprint 2</strong></div>
+  </div>
+  <p>CRUD completo de funcionários do administrador.</p>
+  <details>
+    <summary>Ver código completo</summary>
+    <pre><code>package com.sistemaupa.controller;
+
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/api/usuarios&quot;)
+public class UsuarioController {
+
+  private final UsuarioRepository repository;
+
+  public UsuarioController(UsuarioRepository repository) {
+    this.repository = repository;
+  }
+
+  @GetMapping
+  public List&lt;Usuario&gt; listar() {
+    return repository.findAll();
+  }
+
+  @PostMapping
+  public Usuario criar(@RequestBody Usuario usuario) {
+    usuario.setAtivo(true);
+    return repository.save(usuario);
+  }
+
+  @PutMapping(&quot;/{id}&quot;)
+  public Usuario atualizar(@PathVariable Long id, @RequestBody Usuario dados) {
+    Usuario usuario = repository.findById(id)
+      .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Usuário não encontrado.&quot;));
+
+    usuario.setNome(dados.getNome());
+    usuario.setEmail(dados.getEmail());
+    usuario.setCargo(dados.getCargo());
+    usuario.setAtivo(dados.isAtivo());
+
+    return repository.save(usuario);
+  }
+
+  @DeleteMapping(&quot;/{id}&quot;)
+  public void excluir(@PathVariable Long id) {
+    repository.deleteById(id);
+  }
+}</code></pre>
+  </details>
+</article>
+</div></section>
+
+    <section id="testes"><h2 class="section-title">Testes</h2><div class="grid"><div class="card"><h3>Login</h3><p>Válido, inválido e usuário inativo.</p></div><div class="card"><h3>CRUDs</h3><p>Cadastrar, listar, buscar, editar e excluir.</p></div><div class="card"><h3>Fluxo</h3><p>Recepção até consultório.</p></div><div class="card"><h3>Produção</h3><p>CORS, Vercel, Railway e áudio.</p></div></div></section>
+
+    <section id="entrega"><h2 class="section-title">Checklist final</h2><ul class="checklist"><li><input type="checkbox" id="x1"><label for="x1">Backlog e Kanban atualizados.</label></li><li><input type="checkbox" id="x2"><label for="x2">UML e banco revisados.</label></li><li><input type="checkbox" id="x3"><label for="x3">CRUD principal completo.</label></li><li><input type="checkbox" id="x4"><label for="x4">CRUD de funcionários completo.</label></li><li><input type="checkbox" id="x5"><label for="x5">Postman salvo.</label></li><li><input type="checkbox" id="x6"><label for="x6">Multi-PC e áudio testados.</label></li><li><input type="checkbox" id="x7"><label for="x7">README finalizado.</label></li><li><input type="checkbox" id="x8"><label for="x8">Apresentação ensaiada.</label></li></ul></section>
+  </div>
+</main>
+
+<button class="top" id="topBtn">↑</button>
+<script>
+const sidebar=document.getElementById("sidebar");
+document.getElementById("menuBtn")?.addEventListener("click",()=>sidebar.classList.toggle("open"));
+
+document.querySelectorAll(".themeBtn").forEach(btn=>btn.addEventListener("click",()=>{
+  document.body.classList.toggle("dark");
+  localStorage.setItem("upa-doc-theme",document.body.classList.contains("dark")?"dark":"light");
+}));
+if(localStorage.getItem("upa-doc-theme")==="dark")document.body.classList.add("dark");
+
+document.querySelectorAll(".code-tab").forEach(btn=>btn.addEventListener("click",()=>{
+  const tab=btn.dataset.tab;
+  document.querySelectorAll(".code-tab").forEach(x=>x.classList.toggle("active",x===btn));
+  document.querySelectorAll(".code-panel").forEach(x=>x.classList.toggle("active",x.dataset.panel===tab));
+}));
+
+document.querySelectorAll("pre").forEach(pre=>{
+  const b=document.createElement("button");
+  b.className="copy";
+  b.textContent="Copiar";
+  b.onclick=async()=>{
+    await navigator.clipboard.writeText(pre.querySelector("code").innerText);
+    b.textContent="Copiado!";
+    setTimeout(()=>b.textContent="Copiar",1300);
+  };
+  pre.appendChild(b);
+});
+
+document.querySelectorAll('.checklist input[type="checkbox"]').forEach(input=>{
+  input.checked=localStorage.getItem("check-"+input.id)==="true";
+  input.onchange=()=>localStorage.setItem("check-"+input.id,input.checked);
+});
+
+const sections=[...document.querySelectorAll(".content section")];
+const links=[...document.querySelectorAll("nav a")];
+
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(entry.isIntersecting){
+    links.forEach(link=>link.classList.toggle("active",link.getAttribute("href")==="#"+entry.target.id));
+  }
+}),{rootMargin:"-35% 0px -55% 0px"});
+sections.forEach(s=>observer.observe(s));
+
+document.getElementById("search").addEventListener("input",e=>{
+  const term=e.target.value.toLowerCase().trim();
+  sections.forEach(s=>s.hidden=term && !s.innerText.toLowerCase().includes(term));
+});
+
+const topBtn=document.getElementById("topBtn");
+window.addEventListener("scroll",()=>topBtn.classList.toggle("visible",scrollY>600));
+topBtn.onclick=()=>scrollTo({top:0,behavior:"smooth"});
+</script>
+</body>
+</html>
