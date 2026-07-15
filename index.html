@@ -3,712 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sistema UPA — Manual 100% Copiar e Colar</title>
+<title>Sistema UPA — Manual por Sprint e Integrante</title>
 <style>
-:root {
-  --bg:#f3f7fa;
-  --surface:#ffffff;
-  --surface2:#edf4f7;
-  --text:#18242d;
-  --muted:#657783;
-  --primary:#087f8c;
-  --primary-dark:#075a64;
-  --border:#d7e2e8;
-  --code:#10202b;
-  --shadow:0 14px 40px rgba(20,54,70,.1);
-  --sidebar:300px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:20px}
-body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}
-button,input{font:inherit}
-aside{position:fixed;inset:0 auto 0 0;width:var(--sidebar);padding:26px 20px;background:linear-gradient(180deg,#075a64,#063e46);color:#fff;overflow:auto;z-index:100}
-aside h1{margin:0;font-size:1.25rem}
-aside p{margin:4px 0 18px;opacity:.72}
-aside input{width:100%;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;outline:none}
-aside input::placeholder{color:rgba(255,255,255,.65)}
-.nav-title{margin:20px 9px 7px;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;opacity:.55;font-weight:800}
-aside a{display:block;padding:8px 10px;margin:2px 0;border-radius:9px;color:rgba(255,255,255,.84);text-decoration:none;font-size:.9rem}
-aside a:hover{background:rgba(255,255,255,.13);color:#fff}
-main{margin-left:var(--sidebar)}
-.hero{padding:68px clamp(24px,6vw,90px);color:#fff;background:radial-gradient(circle at 84% 15%,rgba(255,255,255,.14),transparent 26%),linear-gradient(135deg,#075a64,#089bab)}
-.hero h2{font-size:clamp(2.6rem,5vw,5rem);line-height:1.02;letter-spacing:-.05em;margin:10px 0 18px}
-.hero p{max-width:880px;font-size:1.12rem;opacity:.92}
-.badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}
-.badge{padding:8px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.1)}
-.content{max-width:1320px;margin:auto;padding:38px clamp(18px,4vw,58px) 90px}
-.section{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:30px;margin-bottom:30px;box-shadow:var(--shadow)}
-.section-head span{font-size:.74rem;font-weight:900;letter-spacing:.12em;color:var(--primary)}
-.section-head h2{margin:5px 0 20px;font-size:clamp(1.7rem,3vw,2.45rem)}
-.notice{padding:18px;border-left:5px solid var(--primary);border-radius:12px;background:#e9f7f8}
-.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.step{padding:18px;border:1px solid var(--border);border-radius:14px;background:var(--surface2)}
-.step strong{display:block;color:var(--primary);margin-bottom:6px}
-pre{position:relative;margin:0;padding:20px;overflow:auto;background:var(--code);color:#e8f1f5;font-size:.84rem;line-height:1.55}
-code{font-family:Consolas,Monaco,monospace}
-.tree{border-radius:14px;overflow:hidden}
-.dev-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.dev-card{padding:18px;border:1px solid var(--border);border-radius:14px;background:var(--surface2)}
-.dev-card h3{margin:8px 0 10px}
-.dev-label{display:inline-block;padding:5px 9px;border-radius:999px;background:rgba(8,127,140,.13);color:var(--primary);font-size:.74rem;font-weight:900}
-.file-card{margin:18px 0;border:1px solid var(--border);border-radius:15px;overflow:hidden;background:var(--surface2)}
-.file-title{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:16px}
-.file-title span{font-size:.68rem;letter-spacing:.1em;color:var(--muted);font-weight:900}
-.file-title h3{margin:4px 0 0;font-size:1rem;font-family:Consolas,monospace;word-break:break-all}
-.copy-file{border:0;border-radius:9px;padding:9px 12px;background:var(--primary);color:white;cursor:pointer;white-space:nowrap}
-.copy-file:hover{background:var(--primary-dark)}
-.copy-all{border:0;border-radius:10px;padding:11px 14px;background:var(--primary);color:white;cursor:pointer}
-.top{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border:0;border-radius:50%;background:var(--primary);color:white;cursor:pointer}
-@media(max-width:1050px){aside{position:relative;width:auto}main{margin-left:0}aside nav{display:flex;flex-wrap:wrap;gap:4px}}
-@media(max-width:760px){.steps,.dev-grid{grid-template-columns:1fr}.file-title{align-items:flex-start;flex-direction:column}}
-@media print{aside,.top,.copy-file{display:none!important}main{margin:0}.section{box-shadow:none}}
+:root{--bg:#f5f7fb;--surface:#fff;--soft:#eef3f6;--text:#17232d;--muted:#687985;--primary:#087f8c;--dark:#075861;--border:#d8e2e8;--code:#10212c;--shadow:0 16px 45px rgba(17,49,64,.1)}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+button,select,input{font:inherit} .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(16px,4vw,48px);background:rgba(255,255,255,.95);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900} .logo{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:var(--primary);color:white;font-size:22px} .topnav{display:flex;gap:8px;flex-wrap:wrap} .topnav a{padding:8px 11px;border-radius:9px;text-decoration:none;color:var(--text);font-weight:700;font-size:.88rem} .topnav a:hover{background:var(--soft)}
+.hero{padding:72px clamp(20px,7vw,100px);color:white;background:radial-gradient(circle at 85% 20%,rgba(255,255,255,.15),transparent 27%),linear-gradient(135deg,#075a64,#079cab)} .hero h1{font-size:clamp(2.7rem,6vw,5.7rem);line-height:.98;margin:10px 0 18px;letter-spacing:-.055em} .hero p{max-width:850px;font-size:1.12rem;opacity:.92} .badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px} .badge{padding:8px 12px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.1)}
+.wrap{max-width:1250px;margin:auto;padding:38px clamp(16px,4vw,48px) 90px} .section{margin-bottom:30px;padding:clamp(22px,4vw,38px);border:1px solid var(--border);border-radius:20px;background:var(--surface);box-shadow:var(--shadow)} .section h2{font-size:clamp(1.8rem,3vw,2.6rem);margin:0 0 8px;letter-spacing:-.035em} .lead{color:var(--muted);margin-top:0}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px} .how-card{padding:18px;border-radius:14px;background:var(--soft);border:1px solid var(--border)} .how-card b{display:block;color:var(--primary);margin-bottom:5px}
+.sprint-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px} .sprint-tile{text-align:left;padding:18px;border:1px solid var(--border);border-radius:15px;background:var(--surface);cursor:pointer;transition:.2s} .sprint-tile:hover,.sprint-tile.active{transform:translateY(-2px);border-color:var(--primary);box-shadow:0 12px 25px rgba(8,127,140,.13)} .sprint-tile span{font-size:.72rem;color:var(--primary);font-weight:900} .sprint-tile strong{display:block;font-size:1.05rem;margin:4px 0} .sprint-tile small{color:var(--muted)}
+.workspace{display:none} .workspace.visible{display:block} .workspace-head{padding:22px;border-radius:16px;background:linear-gradient(135deg,#e9f6f7,#f7fbfc);border:1px solid #cce6e8} .workspace-head h2{margin:0} .workspace-head p{margin:6px 0 0;color:var(--muted)}
+.dev-selector{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0} .dev-btn{padding:10px 14px;border:1px solid var(--border);border-radius:11px;background:var(--soft);cursor:pointer;font-weight:800} .dev-btn.active{background:var(--primary);border-color:var(--primary);color:white}
+.dev-panel{padding:22px;border:1px solid var(--border);border-radius:16px;background:var(--surface)} .dev-intro{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:start;padding-bottom:18px;border-bottom:1px solid var(--border)} .dev-intro h3{margin:3px 0;font-size:1.45rem} .role-chip{padding:7px 10px;border-radius:999px;background:rgba(8,127,140,.12);color:var(--primary);font-weight:900;font-size:.78rem} .instruction{padding:14px 16px;border-left:5px solid var(--primary);border-radius:10px;background:var(--soft);margin:18px 0}
+.file-index{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0} .file-link{padding:7px 9px;border-radius:8px;background:var(--soft);border:1px solid var(--border);font-family:Consolas,monospace;font-size:.77rem;cursor:pointer} .codes-stack{display:grid;gap:16px}
+.code-card{border:1px solid var(--border);border-radius:15px;overflow:hidden;background:var(--soft)} .code-top{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:15px 17px;background:var(--surface)} .code-top small{font-size:.68rem;color:var(--muted);font-weight:900;letter-spacing:.1em} .code-top h4{margin:4px 0 0;font-family:Consolas,monospace;font-size:.94rem;word-break:break-all} .copy-btn{padding:8px 11px;border:0;border-radius:8px;background:var(--primary);color:white;cursor:pointer} .path-box{padding:12px 17px;border-top:1px solid var(--border);font-size:.86rem} details{border-top:1px solid var(--border);background:white} summary{padding:12px 17px;cursor:pointer;font-weight:800} pre{margin:0;padding:19px;overflow:auto;background:var(--code);color:#e8f2f6;font-size:.82rem;line-height:1.5}
+.library-controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0} .library-controls input,.library-controls select{padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:white} .library-grid{display:grid;gap:16px} .hidden{display:none!important}
+.footer{padding:30px;text-align:center;color:var(--muted)}
+@media(max-width:980px){.sprint-grid{grid-template-columns:repeat(2,1fr)}.how-grid{grid-template-columns:1fr 1fr}.topnav{display:none}} @media(max-width:650px){.hero{padding-top:52px}.sprint-grid,.how-grid{grid-template-columns:1fr}.dev-intro{grid-template-columns:1fr}.dev-selector{display:grid;grid-template-columns:1fr 1fr}.code-top{align-items:flex-start;flex-direction:column}}
+@media print{.topbar,.sprint-grid,.dev-selector,.library-controls,.copy-btn{display:none!important}.workspace{display:block!important}.section{box-shadow:none}}
 </style>
 </head>
 <body>
-<aside>
-  <h1>Sistema UPA</h1>
-  <p>Manual 100% copiar e colar</p>
-  <input id="search" placeholder="Pesquisar arquivo ou Sprint...">
-  <nav>
-    <div class="nav-title">Começo</div>
-    <a href="#como-usar">Como usar</a>
-    <a href="#spring">Spring Initializr</a>
-    <a href="#estrutura">Estrutura completa</a>
-
-    <div class="nav-title">8 Sprints</div>
-    <a href="#sprint-1">Sprint 1</a><a href="#sprint-2">Sprint 2</a><a href="#sprint-3">Sprint 3</a><a href="#sprint-4">Sprint 4</a><a href="#sprint-5">Sprint 5</a><a href="#sprint-6">Sprint 6</a><a href="#sprint-7">Sprint 7</a><a href="#sprint-8">Sprint 8</a>
-
-    <div class="nav-title">Códigos</div>
-    <a href="#code-group-0">Raiz</a><a href="#code-group-1">Back-End — configuração</a><a href="#code-group-2">Back-End — enums</a><a href="#code-group-3">Back-End — entidades</a><a href="#code-group-4">Back-End — repositories</a><a href="#code-group-5">Back-End — DTOs</a><a href="#code-group-6">Back-End — services</a><a href="#code-group-7">Back-End — controllers e erros</a><a href="#code-group-8">Front-End — HTML</a><a href="#code-group-9">Front-End — CSS</a><a href="#code-group-10">Front-End — JavaScript</a>
-  </nav>
-</aside>
-
-<main>
-  <header class="hero">
-    <span>MANUAL COMPLETO</span>
-    <h2>Todo o projeto pronto<br>para copiar e colar</h2>
-    <p>
-      Esta documentação contém todos os arquivos necessários do Front-End e Back-End,
-      com caminho completo, conteúdo integral e divisão por Sprint.
-    </p>
-    <div class="badges">
-      <span class="badge">65 arquivos completos</span>
-      <span class="badge">8 aulas / 8 Sprints</span>
-      <span class="badge">Java 21 + Spring Boot</span>
-      <span class="badge">Vercel + Railway + Neon</span>
-    </div>
-  </header>
-
-  <div class="content">
-    <section class="section" id="como-usar">
-      <div class="section-head">
-        <span>ANTES DE COMEÇAR</span>
-        <h2>Como usar este manual</h2>
-      </div>
-
-      <div class="notice">
-        Os alunos não precisam inventar código. Devem criar a pasta e o arquivo
-        indicados e copiar o conteúdo integral apresentado na seção de códigos.
-      </div>
-
-      <div class="steps">
-        <div class="step"><strong>1. Localize a Sprint</strong>Veja qual integrante cria cada parte.</div>
-        <div class="step"><strong>2. Crie a pasta</strong>Use exatamente o caminho mostrado.</div>
-        <div class="step"><strong>3. Crie o arquivo</strong>Use exatamente o mesmo nome.</div>
-        <div class="step"><strong>4. Copie o código</strong>Clique em “Copiar código”.</div>
-        <div class="step"><strong>5. Cole e salve</strong>Não altere nomes antes de testar.</div>
-        <div class="step"><strong>6. Execute</strong>Teste antes de personalizar.</div>
-      </div>
-    </section>
-
-    <section class="section" id="spring">
-      <div class="section-head">
-        <span>CONFIGURAÇÃO EXATA</span>
-        <h2>Spring Initializr</h2>
-      </div>
-      <div class="steps">
-        <div class="step"><strong>Project</strong>Maven</div>
-        <div class="step"><strong>Language</strong>Java</div>
-        <div class="step"><strong>Spring Boot</strong>3.5.0</div>
-        <div class="step"><strong>Group</strong>com.sistemaupa</div>
-        <div class="step"><strong>Artifact</strong>backend</div>
-        <div class="step"><strong>Package</strong>com.sistemaupa</div>
-        <div class="step"><strong>Packaging</strong>Jar</div>
-        <div class="step"><strong>Java</strong>21</div>
-      </div>
-
-      <h3>Dependências</h3>
-      <ul>
-        <li>Spring Web</li>
-        <li>Spring Data JPA</li>
-        <li>Validation</li>
-        <li>PostgreSQL Driver</li>
-        <li>Lombok</li>
-      </ul>
-    </section>
-
-    <section class="section" id="estrutura">
-      <div class="section-head">
-        <span>ESTRUTURA COMPLETA</span>
-        <h2>Todos os arquivos que serão criados</h2>
-      </div>
-      <pre class="tree"><code>.gitignore
-README.md
-backend/pom.xml
-backend/src/main/resources/application.properties
-backend/src/main/java/com/sistemaupa/SistemaUpaApplication.java
-backend/src/main/java/com/sistemaupa/config/CorsConfig.java
-backend/src/main/java/com/sistemaupa/config/DataInitializer.java
-backend/src/main/java/com/sistemaupa/enums/Cargo.java
-backend/src/main/java/com/sistemaupa/enums/StatusAtendimento.java
-backend/src/main/java/com/sistemaupa/enums/ClassificacaoRisco.java
-backend/src/main/java/com/sistemaupa/enums/TipoSolicitacao.java
-backend/src/main/java/com/sistemaupa/enums/StatusSolicitacao.java
-backend/src/main/java/com/sistemaupa/entity/Usuario.java
-backend/src/main/java/com/sistemaupa/entity/Paciente.java
-backend/src/main/java/com/sistemaupa/entity/Atendimento.java
-backend/src/main/java/com/sistemaupa/entity/Triagem.java
-backend/src/main/java/com/sistemaupa/entity/Chamada.java
-backend/src/main/java/com/sistemaupa/entity/Prontuario.java
-backend/src/main/java/com/sistemaupa/entity/Solicitacao.java
-backend/src/main/java/com/sistemaupa/repository/UsuarioRepository.java
-backend/src/main/java/com/sistemaupa/repository/PacienteRepository.java
-backend/src/main/java/com/sistemaupa/repository/AtendimentoRepository.java
-backend/src/main/java/com/sistemaupa/repository/TriagemRepository.java
-backend/src/main/java/com/sistemaupa/repository/ChamadaRepository.java
-backend/src/main/java/com/sistemaupa/repository/ProntuarioRepository.java
-backend/src/main/java/com/sistemaupa/repository/SolicitacaoRepository.java
-backend/src/main/java/com/sistemaupa/dto/LoginRequest.java
-backend/src/main/java/com/sistemaupa/dto/UsuarioRequest.java
-backend/src/main/java/com/sistemaupa/dto/UsuarioResponse.java
-backend/src/main/java/com/sistemaupa/dto/AtendimentoRequest.java
-backend/src/main/java/com/sistemaupa/dto/TriagemRequest.java
-backend/src/main/java/com/sistemaupa/dto/ChamadaRequest.java
-backend/src/main/java/com/sistemaupa/dto/ProntuarioRequest.java
-backend/src/main/java/com/sistemaupa/dto/SolicitacaoRequest.java
-backend/src/main/java/com/sistemaupa/service/UsuarioService.java
-backend/src/main/java/com/sistemaupa/service/AtendimentoService.java
-backend/src/main/java/com/sistemaupa/service/TriagemService.java
-backend/src/main/java/com/sistemaupa/service/ChamadaService.java
-backend/src/main/java/com/sistemaupa/service/ProntuarioService.java
-backend/src/main/java/com/sistemaupa/service/SolicitacaoService.java
-backend/src/main/java/com/sistemaupa/controller/HealthController.java
-backend/src/main/java/com/sistemaupa/controller/AuthController.java
-backend/src/main/java/com/sistemaupa/controller/UsuarioController.java
-backend/src/main/java/com/sistemaupa/controller/AtendimentoController.java
-backend/src/main/java/com/sistemaupa/controller/TriagemController.java
-backend/src/main/java/com/sistemaupa/controller/ChamadaController.java
-backend/src/main/java/com/sistemaupa/controller/ProntuarioController.java
-backend/src/main/java/com/sistemaupa/controller/SolicitacaoController.java
-backend/src/main/java/com/sistemaupa/exception/ApiExceptionHandler.java
-frontend/css/style.css
-frontend/js/api.js
-frontend/js/auth.js
-frontend/index.html
-frontend/login.html
-frontend/js/login.js
-frontend/dashboard.html
-frontend/js/dashboard.js
-frontend/balcao.html
-frontend/js/balcao.js
-frontend/triagem.html
-frontend/js/triagem.js
-frontend/consultorio.html
-frontend/js/consultorio.js
-frontend/painel.html
-frontend/js/painel.js</code></pre>
-    </section>
-
-    
-    <section id="sprint-1" class="section sprint-section">
-      <div class="section-head">
-        <span>SPRINT 1</span>
-        <h2>Sprint 1 — Aula 1</h2>
-      </div>
-      <div class="dev-grid">
-        
-      <article class="dev-card">
-        <div class="dev-label">DEV 1</div>
-        <h3>Escrever visão do produto e critérios do balcão.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/visao.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 2</div>
-        <h3>Criar GitHub, develop, Kanban e estrutura inicial.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>.gitignore</code></li><li><code>README.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 3</div>
-        <h3>Desenhar wireframe da triagem.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/wireframes/triagem.drawio</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 4</div>
-        <h3>Desenhar painel, consultório e dashboard.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/wireframes/</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 5</div>
-        <h3>Modelar Usuario e Cargo.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>backend/.../Usuario.java</code></li><li><code>backend/.../Cargo.java</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 6</div>
-        <h3>Modelar Paciente, Atendimento e Triagem.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>backend/.../</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 7</div>
-        <h3>Criar DER e coleção Postman.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/diagramas/</code></li><li><code>docs/postman/</code></li></ul>
-      </article>
-    
-      </div>
-    </section>
-    
-    <section id="sprint-2" class="section sprint-section">
-      <div class="section-head">
-        <span>SPRINT 2</span>
-        <h2>Sprint 2 — Aula 2</h2>
-      </div>
-      <div class="dev-grid">
-        
-      <article class="dev-card">
-        <div class="dev-label">DEV 1</div>
-        <h3>Criar histórias e critérios de aceitação.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/historias.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 2</div>
-        <h3>Criar requisitos e atualizar Kanban.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/requisitos.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 3</div>
-        <h3>Criar casos de uso da triagem.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/diagramas/casos-uso.drawio</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 4</div>
-        <h3>Criar mapa de navegação das telas.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/mapa-navegacao.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 5</div>
-        <h3>Criar diagrama de classes de usuários.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/diagramas/classes-usuarios.drawio</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 6</div>
-        <h3>Criar diagrama de classes principal.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/diagramas/classes-atendimento.drawio</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 7</div>
-        <h3>Criar modelo lógico do banco.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/modelagem/modelo-logico.md</code></li></ul>
-      </article>
-    
-      </div>
-    </section>
-    
-    <section id="sprint-3" class="section sprint-section">
-      <div class="section-head">
-        <span>SPRINT 3</span>
-        <h2>Sprint 3 — Aula 3</h2>
-      </div>
-      <div class="dev-grid">
-        
-      <article class="dev-card">
-        <div class="dev-label">DEV 1</div>
-        <h3>Validar critérios e campos.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/criterios-sprint3.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 2</div>
-        <h3>Criar projeto Spring Initializr.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>backend/pom.xml</code></li><li><code>SistemaUpaApplication.java</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 3</div>
-        <h3>Criar estrutura Front-End.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>frontend/index.html</code></li><li><code>frontend/css/style.css</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 4</div>
-        <h3>Criar todas as páginas HTML.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>frontend/*.html</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 5</div>
-        <h3>Criar Usuario, Cargo, DTOs e Repository.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>backend/.../usuario</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 6</div>
-        <h3>Criar Paciente, Atendimento e Triagem.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>backend/.../atendimento</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 7</div>
-        <h3>Criar Neon, application.properties e entidades médicas.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>application.properties</code></li></ul>
-      </article>
-    
-      </div>
-    </section>
-    
-    <section id="sprint-4" class="section sprint-section">
-      <div class="section-head">
-        <span>SPRINT 4</span>
-        <h2>Sprint 4 — Aula 4</h2>
-      </div>
-      <div class="dev-grid">
-        
-      <article class="dev-card">
-        <div class="dev-label">DEV 1</div>
-        <h3>Validar os CRUDs e regras.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/aceite-cruds.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 2</div>
-        <h3>Criar handler de erros e revisar PRs.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>ApiExceptionHandler.java</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 3</div>
-        <h3>Documentar payloads do Postman.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/postman/endpoints.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 4</div>
-        <h3>Preparar mocks visuais.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>frontend/js/mock-data.js</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 5</div>
-        <h3>Implementar login e CRUD de usuários.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>UsuarioService.java</code></li><li><code>controllers</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 6</div>
-        <h3>Implementar CRUD de atendimento e triagem.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>AtendimentoService.java</code></li><li><code>TriagemService.java</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 7</div>
-        <h3>Implementar chamada, prontuário e solicitação.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>services/controllers médicos</code></li></ul>
-      </article>
-    
-      </div>
-    </section>
-    
-    <section id="sprint-5" class="section sprint-section">
-      <div class="section-head">
-        <span>SPRINT 5</span>
-        <h2>Sprint 5 — Aula 5</h2>
-      </div>
-      <div class="dev-grid">
-        
-      <article class="dev-card">
-        <div class="dev-label">DEV 1</div>
-        <h3>Copiar login e balcão completos.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>frontend/login.html</code></li><li><code>balcao.html</code></li><li><code>login.js</code></li><li><code>balcao.js</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 2</div>
-        <h3>Copiar CSS, api.js e auth.js.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>frontend/css/style.css</code></li><li><code>frontend/js/api.js</code></li><li><code>auth.js</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 3</div>
-        <h3>Copiar triagem completa.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>frontend/triagem.html</code></li><li><code>frontend/js/triagem.js</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 4</div>
-        <h3>Copiar painel, consultório e dashboard.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>frontend/painel.html</code></li><li><code>consultorio.html</code></li><li><code>dashboard.html</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 5</div>
-        <h3>Ajustar API de usuários para o Front-End.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>UsuarioResponse.java</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 6</div>
-        <h3>Ajustar JSON e filas.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>AtendimentoService.java</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 7</div>
-        <h3>Testar os endpoints usados pelas telas.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>Postman</code></li></ul>
-      </article>
-    
-      </div>
-    </section>
-    
-    <section id="sprint-6" class="section sprint-section">
-      <div class="section-head">
-        <span>SPRINT 6</span>
-        <h2>Sprint 6 — Aula 6</h2>
-      </div>
-      <div class="dev-grid">
-        
-      <article class="dev-card">
-        <div class="dev-label">DEV 1</div>
-        <h3>Testar login e cadastro em produção.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>login.js</code></li><li><code>balcao.js</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 2</div>
-        <h3>Configurar CORS, Vercel e Railway.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>CorsConfig.java</code></li><li><code>api.js</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 3</div>
-        <h3>Testar triagem e chamada.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>triagem.js</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 4</div>
-        <h3>Testar painel, consultório e admin.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>painel.js</code></li><li><code>consultorio.js</code></li><li><code>dashboard.js</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 5</div>
-        <h3>Corrigir contratos de usuário.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>UsuarioService.java</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 6</div>
-        <h3>Corrigir status e ordenação das filas.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>AtendimentoService.java</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 7</div>
-        <h3>Executar o fluxo completo no Postman.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>Coleção Postman</code></li></ul>
-      </article>
-    
-      </div>
-    </section>
-    
-    <section id="sprint-7" class="section sprint-section">
-      <div class="section-head">
-        <span>SPRINT 7</span>
-        <h2>Sprint 7 — Aula 7</h2>
-      </div>
-      <div class="dev-grid">
-        
-      <article class="dev-card">
-        <div class="dev-label">DEV 1</div>
-        <h3>Testar login e balcão.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/testes/login-balcao.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 2</div>
-        <h3>Organizar bugs e merges.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/bugs.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 3</div>
-        <h3>Testar triagem.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/testes/triagem.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 4</div>
-        <h3>Testar painel, médico e admin.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/testes/painel-medico-admin.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 5</div>
-        <h3>Corrigir API de usuários.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>backend/...</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 6</div>
-        <h3>Corrigir atendimento e triagem.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>backend/...</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 7</div>
-        <h3>Atualizar Postman, UML e banco.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/...</code></li></ul>
-      </article>
-    
-      </div>
-    </section>
-    
-    <section id="sprint-8" class="section sprint-section">
-      <div class="section-head">
-        <span>SPRINT 8</span>
-        <h2>Sprint 8 — Aula 8</h2>
-      </div>
-      <div class="dev-grid">
-        
-      <article class="dev-card">
-        <div class="dev-label">DEV 1</div>
-        <h3>Apresentar problema e validar fluxo.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>docs/apresentacao.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 2</div>
-        <h3>Finalizar README e coordenar apresentação.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>README.md</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 3</div>
-        <h3>Operar a triagem durante a apresentação.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>triagem.html</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 4</div>
-        <h3>Operar painel, médico e admin.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>painel.html</code></li><li><code>consultorio.html</code></li><li><code>dashboard.html</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 5</div>
-        <h3>Monitorar Railway e login.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>/health</code></li><li><code>Railway logs</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 6</div>
-        <h3>Demonstrar CRUD principal no Postman.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>Postman</code></li></ul>
-      </article>
-    
-      <article class="dev-card">
-        <div class="dev-label">DEV 7</div>
-        <h3>Explicar banco, DER e endpoints.</h3>
-        <p>Arquivos ou entregas desta Sprint:</p>
-        <ul><li><code>Neon</code></li><li><code>DER</code></li></ul>
-      </article>
-    
-      </div>
-    </section>
-    
-
-    
-    <section class="section code-group" id="code-group-0">
-      <div class="section-head">
-        <span>CÓDIGOS COMPLETOS</span>
-        <h2>Raiz</h2>
-      </div>
-      
-    <article class="file-card" data-file=".gitignore">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>.gitignore</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code># Java
+<header class="topbar"><div class="brand"><div class="logo">✚</div><div>Sistema UPA<br><small style="font-weight:500;color:var(--muted)">Manual de desenvolvimento</small></div></div><nav class="topnav"><a href="#inicio">Início</a><a href="#sprints">Sprints</a><a href="#biblioteca">Todos os códigos</a></nav></header>
+<section class="hero" id="inicio"><small>GUIA 100% COPIAR E COLAR</small><h1>Escolha a Sprint.<br>Escolha seu DEV.</h1><p>As tarefas, caminhos e códigos ficam juntos. Cada integrante acessa somente o que precisa fazer naquela aula.</p><div class="badges"><span class="badge">8 Sprints</span><span class="badge">7 integrantes</span><span class="badge">Java 17</span><span class="badge">Códigos completos</span></div></section>
+<main class="wrap">
+<section class="section"><h2>Como usar</h2><p class="lead">Fluxo rápido para não se perder durante a aula.</p><div class="how-grid"><div class="how-card"><b>1. Clique na Sprint</b>Selecione a aula atual.</div><div class="how-card"><b>2. Escolha seu DEV</b>Abra apenas sua responsabilidade.</div><div class="how-card"><b>3. Copie e cole</b>Crie o caminho indicado e copie o código.</div></div></section>
+<section class="section" id="sprints"><h2>Selecione a Sprint</h2><p class="lead">Cada aula corresponde a uma Sprint.</p><div class="sprint-grid" id="sprintGrid"></div></section>
+<section class="section workspace" id="workspace"><div class="workspace-head"><small id="wsNumber"></small><h2 id="wsTitle"></h2><p id="wsGoal"></p></div><div class="dev-selector" id="devSelector"></div><div class="dev-panel"><div class="dev-intro"><div><small id="devLabel"></small><h3 id="devRole"></h3><p id="devInstruction"></p></div><span class="role-chip" id="fileCount"></span></div><div class="instruction"><strong>Como fazer:</strong> crie as pastas e arquivos exatamente como aparecem abaixo. Depois clique em “Copiar”.</div><div class="file-index" id="fileIndex"></div><div class="codes-stack" id="codesStack"></div></div></section>
+<section class="section" id="biblioteca"><h2>Biblioteca completa de arquivos</h2><p class="lead">Use esta área apenas quando precisar procurar um arquivo fora da Sprint.</p><div class="library-controls"><input id="searchFile" placeholder="Pesquisar arquivo..."><select id="filterArea"><option value="all">Todas as áreas</option><option value="backend">Back-End</option><option value="frontend">Front-End</option><option value="docs">Documentação</option><option value="root">Raiz</option></select></div><div class="library-grid" id="libraryGrid"></div></section>
+</main><footer class="footer">Sistema UPA — documentação acadêmica</footer>
+<template id="file-0"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>.gitignore</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> .<br><strong>Arquivo:</strong> .gitignore</div><details open><summary>Ver código completo</summary><pre><code># Java
 backend/target/
 *.class
 *.jar
@@ -725,25 +50,15 @@ Thumbs.db
 # Secrets
 .env
 application-local.properties
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="README.md">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>README.md</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code># Sistema UPA
+</code></pre></details></article></template>
+<template id="file-1"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>README.md</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> .<br><strong>Arquivo:</strong> README.md</div><details open><summary>Ver código completo</summary><pre><code># Sistema UPA
 
 Projeto acadêmico fullstack para simular o fluxo de atendimento de uma UPA.
 
 ## Tecnologias
 
 - Front-End: HTML, CSS e JavaScript
-- Back-End: Java 21 e Spring Boot
+- Back-End: Java 17 e Spring Boot
 - Banco: PostgreSQL no Neon
 - API: Railway
 - Front-End publicado: Vercel
@@ -790,26 +105,8 @@ ADMIN_EMAIL=admin@upa.com
 ADMIN_PASSWORD=admin123
 
 Altere essas credenciais no Railway antes da apresentação.
-</code></pre>
-    </article>
-    
-    </section>
-    
-    <section class="section code-group" id="code-group-1">
-      <div class="section-head">
-        <span>CÓDIGOS COMPLETOS</span>
-        <h2>Back-End — configuração</h2>
-      </div>
-      
-    <article class="file-card" data-file="backend/pom.xml">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/pom.xml</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+</code></pre></details></article></template>
+<template id="file-2"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/pom.xml</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend<br><strong>Arquivo:</strong> pom.xml</div><details open><summary>Ver código completo</summary><pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot;
          xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
          xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
@@ -830,7 +127,7 @@ Altere essas credenciais no Railway antes da apresentação.
     &lt;description&gt;API acadêmica do Sistema UPA&lt;/description&gt;
 
     &lt;properties&gt;
-        &lt;java.version&gt;21&lt;/java.version&gt;
+        &lt;java.version&gt;17&lt;/java.version&gt;
     &lt;/properties&gt;
 
     &lt;dependencies&gt;
@@ -878,18 +175,8 @@ Altere essas credenciais no Railway antes da apresentação.
     &lt;/build&gt;
 
 &lt;/project&gt;
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/resources/application.properties">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/resources/application.properties</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>spring.application.name=sistema-upa
+</code></pre></details></article></template>
+<template id="file-3"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/resources/application.properties</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/resources<br><strong>Arquivo:</strong> application.properties</div><details open><summary>Ver código completo</summary><pre><code>spring.application.name=sistema-upa
 
 server.address=0.0.0.0
 server.port=${PORT:8080}
@@ -906,18 +193,8 @@ spring.jpa.show-sql=false
 app.frontend.url=${FRONTEND_URL:http://127.0.0.1:5500}
 app.admin.email=${ADMIN_EMAIL:admin@upa.com}
 app.admin.password=${ADMIN_PASSWORD:admin123}
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/SistemaUpaApplication.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/SistemaUpaApplication.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa;
+</code></pre></details></article></template>
+<template id="file-4"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/SistemaUpaApplication.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa<br><strong>Arquivo:</strong> SistemaUpaApplication.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -929,18 +206,8 @@ public class SistemaUpaApplication {
         SpringApplication.run(SistemaUpaApplication.class, args);
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/config/CorsConfig.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/config/CorsConfig.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.config;
+</code></pre></details></article></template>
+<template id="file-5"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/config/CorsConfig.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/config<br><strong>Arquivo:</strong> CorsConfig.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -965,18 +232,8 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedHeaders(&quot;*&quot;);
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/config/DataInitializer.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/config/DataInitializer.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.config;
+</code></pre></details></article></template>
+<template id="file-6"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/config/DataInitializer.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/config<br><strong>Arquivo:</strong> DataInitializer.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.config;
 
 import com.sistemaupa.entity.Usuario;
 import com.sistemaupa.enums.Cargo;
@@ -1014,26 +271,8 @@ public class DataInitializer implements CommandLineRunner {
         }
     }
 }
-</code></pre>
-    </article>
-    
-    </section>
-    
-    <section class="section code-group" id="code-group-2">
-      <div class="section-head">
-        <span>CÓDIGOS COMPLETOS</span>
-        <h2>Back-End — enums</h2>
-      </div>
-      
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/enums/Cargo.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/enums/Cargo.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.enums;
+</code></pre></details></article></template>
+<template id="file-7"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/enums/Cargo.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/enums<br><strong>Arquivo:</strong> Cargo.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.enums;
 
 public enum Cargo {
     ADMIN,
@@ -1041,18 +280,8 @@ public enum Cargo {
     ENFERMEIRO,
     MEDICO
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/enums/StatusAtendimento.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/enums/StatusAtendimento.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.enums;
+</code></pre></details></article></template>
+<template id="file-8"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/enums/StatusAtendimento.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/enums<br><strong>Arquivo:</strong> StatusAtendimento.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.enums;
 
 public enum StatusAtendimento {
     AGUARDANDO_TRIAGEM,
@@ -1064,18 +293,8 @@ public enum StatusAtendimento {
     FINALIZADO,
     CANCELADO
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/enums/ClassificacaoRisco.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/enums/ClassificacaoRisco.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.enums;
+</code></pre></details></article></template>
+<template id="file-9"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/enums/ClassificacaoRisco.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/enums<br><strong>Arquivo:</strong> ClassificacaoRisco.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.enums;
 
 public enum ClassificacaoRisco {
     VERMELHO(1),
@@ -1094,18 +313,8 @@ public enum ClassificacaoRisco {
         return prioridade;
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/enums/TipoSolicitacao.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/enums/TipoSolicitacao.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.enums;
+</code></pre></details></article></template>
+<template id="file-10"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/enums/TipoSolicitacao.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/enums<br><strong>Arquivo:</strong> TipoSolicitacao.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.enums;
 
 public enum TipoSolicitacao {
     MEDICACAO,
@@ -1113,18 +322,8 @@ public enum TipoSolicitacao {
     TRANSFERENCIA,
     OBSERVACAO
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/enums/StatusSolicitacao.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/enums/StatusSolicitacao.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.enums;
+</code></pre></details></article></template>
+<template id="file-11"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/enums/StatusSolicitacao.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/enums<br><strong>Arquivo:</strong> StatusSolicitacao.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.enums;
 
 public enum StatusSolicitacao {
     SOLICITADO,
@@ -1132,26 +331,8 @@ public enum StatusSolicitacao {
     CONCLUIDO,
     CANCELADO
 }
-</code></pre>
-    </article>
-    
-    </section>
-    
-    <section class="section code-group" id="code-group-3">
-      <div class="section-head">
-        <span>CÓDIGOS COMPLETOS</span>
-        <h2>Back-End — entidades</h2>
-      </div>
-      
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/entity/Usuario.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/entity/Usuario.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.entity;
+</code></pre></details></article></template>
+<template id="file-12"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/entity/Usuario.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/entity<br><strong>Arquivo:</strong> Usuario.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.entity;
 
 import com.sistemaupa.enums.Cargo;
 import jakarta.persistence.*;
@@ -1204,18 +385,8 @@ public class Usuario {
     public boolean isAtivo() { return ativo; }
     public void setAtivo(boolean ativo) { this.ativo = ativo; }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/entity/Paciente.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/entity/Paciente.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.entity;
+</code></pre></details></article></template>
+<template id="file-13"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/entity/Paciente.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/entity<br><strong>Arquivo:</strong> Paciente.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -1257,18 +428,8 @@ public class Paciente {
     public String getTelefone() { return telefone; }
     public void setTelefone(String telefone) { this.telefone = telefone; }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/entity/Atendimento.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/entity/Atendimento.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.entity;
+</code></pre></details></article></template>
+<template id="file-14"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/entity/Atendimento.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/entity<br><strong>Arquivo:</strong> Atendimento.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.entity;
 
 import com.sistemaupa.enums.ClassificacaoRisco;
 import com.sistemaupa.enums.StatusAtendimento;
@@ -1332,18 +493,8 @@ public class Atendimento {
     public ClassificacaoRisco getClassificacaoRisco() { return classificacaoRisco; }
     public void setClassificacaoRisco(ClassificacaoRisco classificacaoRisco) { this.classificacaoRisco = classificacaoRisco; }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/entity/Triagem.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/entity/Triagem.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.entity;
+</code></pre></details></article></template>
+<template id="file-15"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/entity/Triagem.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/entity<br><strong>Arquivo:</strong> Triagem.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.entity;
 
 import com.sistemaupa.enums.ClassificacaoRisco;
 import jakarta.persistence.*;
@@ -1414,18 +565,8 @@ public class Triagem {
     public LocalDateTime getDataHoraTriagem() { return dataHoraTriagem; }
     public void setDataHoraTriagem(LocalDateTime dataHoraTriagem) { this.dataHoraTriagem = dataHoraTriagem; }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/entity/Chamada.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/entity/Chamada.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.entity;
+</code></pre></details></article></template>
+<template id="file-16"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/entity/Chamada.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/entity<br><strong>Arquivo:</strong> Chamada.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.entity;
 
 import jakarta.persistence.*;
 
@@ -1467,18 +608,8 @@ public class Chamada {
     public LocalDateTime getDataHora() { return dataHora; }
     public void setDataHora(LocalDateTime dataHora) { this.dataHora = dataHora; }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/entity/Prontuario.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/entity/Prontuario.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.entity;
+</code></pre></details></article></template>
+<template id="file-17"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/entity/Prontuario.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/entity<br><strong>Arquivo:</strong> Prontuario.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.entity;
 
 import jakarta.persistence.*;
 
@@ -1526,18 +657,8 @@ public class Prontuario {
     public LocalDateTime getDataHoraAtendimento() { return dataHoraAtendimento; }
     public void setDataHoraAtendimento(LocalDateTime dataHoraAtendimento) { this.dataHoraAtendimento = dataHoraAtendimento; }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/entity/Solicitacao.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/entity/Solicitacao.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.entity;
+</code></pre></details></article></template>
+<template id="file-18"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/entity/Solicitacao.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/entity<br><strong>Arquivo:</strong> Solicitacao.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.entity;
 
 import com.sistemaupa.enums.StatusSolicitacao;
 import com.sistemaupa.enums.TipoSolicitacao;
@@ -1587,26 +708,8 @@ public class Solicitacao {
     public StatusSolicitacao getStatus() { return status; }
     public void setStatus(StatusSolicitacao status) { this.status = status; }
 }
-</code></pre>
-    </article>
-    
-    </section>
-    
-    <section class="section code-group" id="code-group-4">
-      <div class="section-head">
-        <span>CÓDIGOS COMPLETOS</span>
-        <h2>Back-End — repositories</h2>
-      </div>
-      
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/repository/UsuarioRepository.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/repository/UsuarioRepository.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.repository;
+</code></pre></details></article></template>
+<template id="file-19"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/repository/UsuarioRepository.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/repository<br><strong>Arquivo:</strong> UsuarioRepository.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.repository;
 
 import com.sistemaupa.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -1619,36 +722,16 @@ public interface UsuarioRepository extends JpaRepository&lt;Usuario, Long&gt; {
 
     boolean existsByEmail(String email);
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/repository/PacienteRepository.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/repository/PacienteRepository.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.repository;
+</code></pre></details></article></template>
+<template id="file-20"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/repository/PacienteRepository.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/repository<br><strong>Arquivo:</strong> PacienteRepository.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.repository;
 
 import com.sistemaupa.entity.Paciente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PacienteRepository extends JpaRepository&lt;Paciente, Long&gt; {
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/repository/AtendimentoRepository.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/repository/AtendimentoRepository.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.repository;
+</code></pre></details></article></template>
+<template id="file-21"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/repository/AtendimentoRepository.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/repository<br><strong>Arquivo:</strong> AtendimentoRepository.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.repository;
 
 import com.sistemaupa.entity.Atendimento;
 import com.sistemaupa.enums.StatusAtendimento;
@@ -1660,18 +743,8 @@ public interface AtendimentoRepository extends JpaRepository&lt;Atendimento, Lon
 
     List&lt;Atendimento&gt; findByStatusOrderByDataHoraEntradaAsc(StatusAtendimento status);
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/repository/TriagemRepository.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/repository/TriagemRepository.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.repository;
+</code></pre></details></article></template>
+<template id="file-22"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/repository/TriagemRepository.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/repository<br><strong>Arquivo:</strong> TriagemRepository.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.repository;
 
 import com.sistemaupa.entity.Triagem;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -1684,18 +757,8 @@ public interface TriagemRepository extends JpaRepository&lt;Triagem, Long&gt; {
 
     boolean existsByAtendimentoId(Long atendimentoId);
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/repository/ChamadaRepository.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/repository/ChamadaRepository.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.repository;
+</code></pre></details></article></template>
+<template id="file-23"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/repository/ChamadaRepository.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/repository<br><strong>Arquivo:</strong> ChamadaRepository.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.repository;
 
 import com.sistemaupa.entity.Chamada;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -1709,18 +772,8 @@ public interface ChamadaRepository extends JpaRepository&lt;Chamada, Long&gt; {
 
     List&lt;Chamada&gt; findTop5ByOrderByDataHoraDesc();
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/repository/ProntuarioRepository.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/repository/ProntuarioRepository.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.repository;
+</code></pre></details></article></template>
+<template id="file-24"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/repository/ProntuarioRepository.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/repository<br><strong>Arquivo:</strong> ProntuarioRepository.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.repository;
 
 import com.sistemaupa.entity.Prontuario;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -1733,18 +786,8 @@ public interface ProntuarioRepository extends JpaRepository&lt;Prontuario, Long&
 
     boolean existsByAtendimentoId(Long atendimentoId);
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/repository/SolicitacaoRepository.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/repository/SolicitacaoRepository.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.repository;
+</code></pre></details></article></template>
+<template id="file-25"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/repository/SolicitacaoRepository.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/repository<br><strong>Arquivo:</strong> SolicitacaoRepository.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.repository;
 
 import com.sistemaupa.entity.Solicitacao;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -1755,26 +798,8 @@ public interface SolicitacaoRepository extends JpaRepository&lt;Solicitacao, Lon
 
     List&lt;Solicitacao&gt; findByProntuarioId(Long prontuarioId);
 }
-</code></pre>
-    </article>
-    
-    </section>
-    
-    <section class="section code-group" id="code-group-5">
-      <div class="section-head">
-        <span>CÓDIGOS COMPLETOS</span>
-        <h2>Back-End — DTOs</h2>
-      </div>
-      
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/dto/LoginRequest.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/dto/LoginRequest.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.dto;
+</code></pre></details></article></template>
+<template id="file-26"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/dto/LoginRequest.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/dto<br><strong>Arquivo:</strong> LoginRequest.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -1784,18 +809,8 @@ public record LoginRequest(
         @NotBlank String senha
 ) {
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/dto/UsuarioRequest.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/dto/UsuarioRequest.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.dto;
+</code></pre></details></article></template>
+<template id="file-27"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/dto/UsuarioRequest.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/dto<br><strong>Arquivo:</strong> UsuarioRequest.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.dto;
 
 import com.sistemaupa.enums.Cargo;
 import jakarta.validation.constraints.Email;
@@ -1810,18 +825,8 @@ public record UsuarioRequest(
         Boolean ativo
 ) {
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/dto/UsuarioResponse.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/dto/UsuarioResponse.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.dto;
+</code></pre></details></article></template>
+<template id="file-28"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/dto/UsuarioResponse.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/dto<br><strong>Arquivo:</strong> UsuarioResponse.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.dto;
 
 import com.sistemaupa.enums.Cargo;
 
@@ -1833,18 +838,8 @@ public record UsuarioResponse(
         boolean ativo
 ) {
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/dto/AtendimentoRequest.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/dto/AtendimentoRequest.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.dto;
+</code></pre></details></article></template>
+<template id="file-29"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/dto/AtendimentoRequest.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/dto<br><strong>Arquivo:</strong> AtendimentoRequest.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
@@ -1859,18 +854,8 @@ public record AtendimentoRequest(
         boolean ambulancia
 ) {
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/dto/TriagemRequest.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/dto/TriagemRequest.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.dto;
+</code></pre></details></article></template>
+<template id="file-30"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/dto/TriagemRequest.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/dto<br><strong>Arquivo:</strong> TriagemRequest.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.dto;
 
 import com.sistemaupa.enums.ClassificacaoRisco;
 import jakarta.validation.constraints.Max;
@@ -1888,18 +873,8 @@ public record TriagemRequest(
         @NotNull ClassificacaoRisco classificacaoRisco
 ) {
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/dto/ChamadaRequest.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/dto/ChamadaRequest.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.dto;
+</code></pre></details></article></template>
+<template id="file-31"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/dto/ChamadaRequest.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/dto<br><strong>Arquivo:</strong> ChamadaRequest.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -1910,18 +885,8 @@ public record ChamadaRequest(
         @NotBlank String sala
 ) {
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/dto/ProntuarioRequest.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/dto/ProntuarioRequest.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.dto;
+</code></pre></details></article></template>
+<template id="file-32"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/dto/ProntuarioRequest.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/dto<br><strong>Arquivo:</strong> ProntuarioRequest.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.dto;
 
 import jakarta.validation.constraints.NotNull;
 
@@ -1932,18 +897,8 @@ public record ProntuarioRequest(
         String conduta
 ) {
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/dto/SolicitacaoRequest.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/dto/SolicitacaoRequest.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.dto;
+</code></pre></details></article></template>
+<template id="file-33"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/dto/SolicitacaoRequest.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/dto<br><strong>Arquivo:</strong> SolicitacaoRequest.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.dto;
 
 import com.sistemaupa.enums.TipoSolicitacao;
 import jakarta.validation.constraints.NotBlank;
@@ -1956,26 +911,8 @@ public record SolicitacaoRequest(
         String prioridade
 ) {
 }
-</code></pre>
-    </article>
-    
-    </section>
-    
-    <section class="section code-group" id="code-group-6">
-      <div class="section-head">
-        <span>CÓDIGOS COMPLETOS</span>
-        <h2>Back-End — services</h2>
-      </div>
-      
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/service/UsuarioService.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/service/UsuarioService.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.service;
+</code></pre></details></article></template>
+<template id="file-34"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/service/UsuarioService.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/service<br><strong>Arquivo:</strong> UsuarioService.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.service;
 
 import com.sistemaupa.dto.LoginRequest;
 import com.sistemaupa.dto.UsuarioRequest;
@@ -2066,18 +1003,8 @@ public class UsuarioService {
         );
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/service/AtendimentoService.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/service/AtendimentoService.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.service;
+</code></pre></details></article></template>
+<template id="file-35"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/service/AtendimentoService.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/service<br><strong>Arquivo:</strong> AtendimentoService.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.service;
 
 import com.sistemaupa.dto.AtendimentoRequest;
 import com.sistemaupa.entity.Atendimento;
@@ -2190,18 +1117,8 @@ public class AtendimentoService {
         return atendimentoRepository.save(atendimento);
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/service/TriagemService.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/service/TriagemService.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.service;
+</code></pre></details></article></template>
+<template id="file-36"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/service/TriagemService.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/service<br><strong>Arquivo:</strong> TriagemService.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.service;
 
 import com.sistemaupa.dto.TriagemRequest;
 import com.sistemaupa.entity.Atendimento;
@@ -2260,18 +1177,8 @@ public class TriagemService {
                 .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Triagem não encontrada.&quot;));
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/service/ChamadaService.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/service/ChamadaService.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.service;
+</code></pre></details></article></template>
+<template id="file-37"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/service/ChamadaService.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/service<br><strong>Arquivo:</strong> ChamadaService.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.service;
 
 import com.sistemaupa.dto.ChamadaRequest;
 import com.sistemaupa.entity.Atendimento;
@@ -2326,18 +1233,8 @@ public class ChamadaService {
         return repository.findTop5ByOrderByDataHoraDesc();
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/service/ProntuarioService.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/service/ProntuarioService.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.service;
+</code></pre></details></article></template>
+<template id="file-38"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/service/ProntuarioService.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/service<br><strong>Arquivo:</strong> ProntuarioService.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.service;
 
 import com.sistemaupa.dto.ProntuarioRequest;
 import com.sistemaupa.entity.Atendimento;
@@ -2399,18 +1296,8 @@ public class ProntuarioService {
         );
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/service/SolicitacaoService.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/service/SolicitacaoService.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.service;
+</code></pre></details></article></template>
+<template id="file-39"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/service/SolicitacaoService.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/service<br><strong>Arquivo:</strong> SolicitacaoService.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.service;
 
 import com.sistemaupa.dto.SolicitacaoRequest;
 import com.sistemaupa.entity.Prontuario;
@@ -2455,26 +1342,8 @@ public class SolicitacaoService {
         return repository.findByProntuarioId(prontuarioId);
     }
 }
-</code></pre>
-    </article>
-    
-    </section>
-    
-    <section class="section code-group" id="code-group-7">
-      <div class="section-head">
-        <span>CÓDIGOS COMPLETOS</span>
-        <h2>Back-End — controllers e erros</h2>
-      </div>
-      
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/controller/HealthController.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/controller/HealthController.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.controller;
+</code></pre></details></article></template>
+<template id="file-40"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/controller/HealthController.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/controller<br><strong>Arquivo:</strong> HealthController.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -2489,18 +1358,8 @@ public class HealthController {
         return Map.of(&quot;status&quot;, &quot;ok&quot;);
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/controller/AuthController.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/controller/AuthController.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.controller;
+</code></pre></details></article></template>
+<template id="file-41"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/controller/AuthController.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/controller<br><strong>Arquivo:</strong> AuthController.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.controller;
 
 import com.sistemaupa.dto.LoginRequest;
 import com.sistemaupa.dto.UsuarioResponse;
@@ -2523,18 +1382,8 @@ public class AuthController {
         return service.login(request);
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/controller/UsuarioController.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/controller/UsuarioController.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.controller;
+</code></pre></details></article></template>
+<template id="file-42"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/controller/UsuarioController.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/controller<br><strong>Arquivo:</strong> UsuarioController.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.controller;
 
 import com.sistemaupa.dto.UsuarioRequest;
 import com.sistemaupa.dto.UsuarioResponse;
@@ -2585,18 +1434,8 @@ public class UsuarioController {
         service.excluir(id);
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/controller/AtendimentoController.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/controller/AtendimentoController.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.controller;
+</code></pre></details></article></template>
+<template id="file-43"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/controller/AtendimentoController.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/controller<br><strong>Arquivo:</strong> AtendimentoController.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.controller;
 
 import com.sistemaupa.dto.AtendimentoRequest;
 import com.sistemaupa.entity.Atendimento;
@@ -2657,18 +1496,8 @@ public class AtendimentoController {
         return service.filaMedico();
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/controller/TriagemController.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/controller/TriagemController.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.controller;
+</code></pre></details></article></template>
+<template id="file-44"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/controller/TriagemController.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/controller<br><strong>Arquivo:</strong> TriagemController.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.controller;
 
 import com.sistemaupa.dto.TriagemRequest;
 import com.sistemaupa.entity.Triagem;
@@ -2698,18 +1527,8 @@ public class TriagemController {
         return service.buscarPorAtendimento(atendimentoId);
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/controller/ChamadaController.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/controller/ChamadaController.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.controller;
+</code></pre></details></article></template>
+<template id="file-45"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/controller/ChamadaController.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/controller<br><strong>Arquivo:</strong> ChamadaController.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.controller;
 
 import com.sistemaupa.dto.ChamadaRequest;
 import com.sistemaupa.entity.Chamada;
@@ -2746,18 +1565,8 @@ public class ChamadaController {
         return service.recentes();
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/controller/ProntuarioController.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/controller/ProntuarioController.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.controller;
+</code></pre></details></article></template>
+<template id="file-46"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/controller/ProntuarioController.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/controller<br><strong>Arquivo:</strong> ProntuarioController.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.controller;
 
 import com.sistemaupa.dto.ProntuarioRequest;
 import com.sistemaupa.entity.Prontuario;
@@ -2793,18 +1602,8 @@ public class ProntuarioController {
         service.finalizar(atendimentoId);
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/controller/SolicitacaoController.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/controller/SolicitacaoController.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.controller;
+</code></pre></details></article></template>
+<template id="file-47"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/controller/SolicitacaoController.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/controller<br><strong>Arquivo:</strong> SolicitacaoController.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.controller;
 
 import com.sistemaupa.dto.SolicitacaoRequest;
 import com.sistemaupa.entity.Solicitacao;
@@ -2836,18 +1635,8 @@ public class SolicitacaoController {
         return service.listarPorProntuario(prontuarioId);
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="backend/src/main/java/com/sistemaupa/exception/ApiExceptionHandler.java">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>backend/src/main/java/com/sistemaupa/exception/ApiExceptionHandler.java</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>package com.sistemaupa.exception;
+</code></pre></details></article></template>
+<template id="file-48"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>backend/src/main/java/com/sistemaupa/exception/ApiExceptionHandler.java</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> backend/src/main/java/com/sistemaupa/exception<br><strong>Arquivo:</strong> ApiExceptionHandler.java</div><details open><summary>Ver código completo</summary><pre><code>package com.sistemaupa.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -2886,26 +1675,8 @@ public class ApiExceptionHandler {
         );
     }
 }
-</code></pre>
-    </article>
-    
-    </section>
-    
-    <section class="section code-group" id="code-group-8">
-      <div class="section-head">
-        <span>CÓDIGOS COMPLETOS</span>
-        <h2>Front-End — HTML</h2>
-      </div>
-      
-    <article class="file-card" data-file="frontend/index.html">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/index.html</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>&lt;!DOCTYPE html&gt;
+</code></pre></details></article></template>
+<template id="file-49"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/index.html</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend<br><strong>Arquivo:</strong> index.html</div><details open><summary>Ver código completo</summary><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;pt-BR&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -2938,18 +1709,8 @@ public class ApiExceptionHandler {
 &lt;/main&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/login.html">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/login.html</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>&lt;!DOCTYPE html&gt;
+</code></pre></details></article></template>
+<template id="file-50"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/login.html</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend<br><strong>Arquivo:</strong> login.html</div><details open><summary>Ver código completo</summary><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;pt-BR&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -2990,18 +1751,8 @@ public class ApiExceptionHandler {
 &lt;script src=&quot;js/login.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/dashboard.html">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/dashboard.html</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>&lt;!DOCTYPE html&gt;
+</code></pre></details></article></template>
+<template id="file-51"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/dashboard.html</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend<br><strong>Arquivo:</strong> dashboard.html</div><details open><summary>Ver código completo</summary><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;pt-BR&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -3081,18 +1832,8 @@ public class ApiExceptionHandler {
 &lt;script src=&quot;js/dashboard.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/balcao.html">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/balcao.html</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>&lt;!DOCTYPE html&gt;
+</code></pre></details></article></template>
+<template id="file-52"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/balcao.html</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend<br><strong>Arquivo:</strong> balcao.html</div><details open><summary>Ver código completo</summary><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;pt-BR&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -3163,18 +1904,8 @@ public class ApiExceptionHandler {
 &lt;script src=&quot;js/balcao.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/triagem.html">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/triagem.html</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>&lt;!DOCTYPE html&gt;
+</code></pre></details></article></template>
+<template id="file-53"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/triagem.html</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend<br><strong>Arquivo:</strong> triagem.html</div><details open><summary>Ver código completo</summary><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;pt-BR&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -3261,18 +1992,8 @@ public class ApiExceptionHandler {
 &lt;script src=&quot;js/triagem.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/consultorio.html">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/consultorio.html</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>&lt;!DOCTYPE html&gt;
+</code></pre></details></article></template>
+<template id="file-54"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/consultorio.html</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend<br><strong>Arquivo:</strong> consultorio.html</div><details open><summary>Ver código completo</summary><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;pt-BR&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -3366,18 +2087,8 @@ public class ApiExceptionHandler {
 &lt;script src=&quot;js/consultorio.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/painel.html">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/painel.html</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>&lt;!DOCTYPE html&gt;
+</code></pre></details></article></template>
+<template id="file-55"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/painel.html</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend<br><strong>Arquivo:</strong> painel.html</div><details open><summary>Ver código completo</summary><pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;pt-BR&quot;&gt;
 &lt;head&gt;
     &lt;meta charset=&quot;UTF-8&quot;&gt;
@@ -3402,26 +2113,8 @@ public class ApiExceptionHandler {
 &lt;script src=&quot;js/painel.js&quot;&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre>
-    </article>
-    
-    </section>
-    
-    <section class="section code-group" id="code-group-9">
-      <div class="section-head">
-        <span>CÓDIGOS COMPLETOS</span>
-        <h2>Front-End — CSS</h2>
-      </div>
-      
-    <article class="file-card" data-file="frontend/css/style.css">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/css/style.css</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>/* CSS básico. A equipe pode personalizar livremente. */
+</code></pre></details></article></template>
+<template id="file-56"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/css/style.css</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend/css<br><strong>Arquivo:</strong> style.css</div><details open><summary>Ver código completo</summary><pre><code>/* CSS básico. A equipe pode personalizar livremente. */
 
 :root {
     --primary: #087f8c;
@@ -3602,26 +2295,8 @@ textarea {
         grid-column: auto;
     }
 }
-</code></pre>
-    </article>
-    
-    </section>
-    
-    <section class="section code-group" id="code-group-10">
-      <div class="section-head">
-        <span>CÓDIGOS COMPLETOS</span>
-        <h2>Front-End — JavaScript</h2>
-      </div>
-      
-    <article class="file-card" data-file="frontend/js/api.js">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/js/api.js</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>const API_URL =
+</code></pre></details></article></template>
+<template id="file-57"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/js/api.js</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend/js<br><strong>Arquivo:</strong> api.js</div><details open><summary>Ver código completo</summary><pre><code>const API_URL =
     location.hostname === &quot;localhost&quot; ||
     location.hostname === &quot;127.0.0.1&quot;
         ? &quot;http://localhost:8080/api&quot;
@@ -3655,18 +2330,8 @@ async function apiRequest(path, options = {}) {
 
     return response.json();
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/js/auth.js">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/js/auth.js</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>const auth = {
+</code></pre></details></article></template>
+<template id="file-58"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/js/auth.js</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend/js<br><strong>Arquivo:</strong> auth.js</div><details open><summary>Ver código completo</summary><pre><code>const auth = {
     getUser() {
         const value = localStorage.getItem(&quot;upa-user&quot;);
         return value ? JSON.parse(value) : null;
@@ -3717,18 +2382,8 @@ function renderUser() {
         target.textContent = `${user.nome} — ${user.cargo}`;
     }
 }
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/js/login.js">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/js/login.js</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>const formLogin = document.querySelector(&quot;#formLogin&quot;);
+</code></pre></details></article></template>
+<template id="file-59"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/js/login.js</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend/js<br><strong>Arquivo:</strong> login.js</div><details open><summary>Ver código completo</summary><pre><code>const formLogin = document.querySelector(&quot;#formLogin&quot;);
 const message = document.querySelector(&quot;#message&quot;);
 
 const currentUser = auth.getUser();
@@ -3756,18 +2411,8 @@ formLogin.addEventListener(&quot;submit&quot;, async event =&gt; {
         message.className = &quot;message error-message&quot;;
     }
 });
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/js/dashboard.js">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/js/dashboard.js</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>auth.requireRole(&quot;ADMIN&quot;);
+</code></pre></details></article></template>
+<template id="file-60"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/js/dashboard.js</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend/js<br><strong>Arquivo:</strong> dashboard.js</div><details open><summary>Ver código completo</summary><pre><code>auth.requireRole(&quot;ADMIN&quot;);
 renderUser();
 
 const form = document.querySelector(&quot;#formUsuario&quot;);
@@ -3848,18 +2493,8 @@ cancelEdit.addEventListener(&quot;click&quot;, () =&gt; {
 });
 
 carregarUsuarios();
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/js/balcao.js">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/js/balcao.js</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>auth.requireRole(&quot;RECEPCIONISTA&quot;);
+</code></pre></details></article></template>
+<template id="file-61"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/js/balcao.js</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend/js<br><strong>Arquivo:</strong> balcao.js</div><details open><summary>Ver código completo</summary><pre><code>auth.requireRole(&quot;RECEPCIONISTA&quot;);
 renderUser();
 
 const form = document.querySelector(&quot;#formAtendimento&quot;);
@@ -3894,18 +2529,8 @@ panicButton.addEventListener(&quot;click&quot;, () =&gt; {
         &quot;ALERTA DE PÂNICO ACIONADO NO BALCÃO. Demonstração visual.&quot;;
     panicMessage.className = &quot;message error-message&quot;;
 });
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/js/triagem.js">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/js/triagem.js</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>auth.requireRole(&quot;ENFERMEIRO&quot;);
+</code></pre></details></article></template>
+<template id="file-62"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/js/triagem.js</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend/js<br><strong>Arquivo:</strong> triagem.js</div><details open><summary>Ver código completo</summary><pre><code>auth.requireRole(&quot;ENFERMEIRO&quot;);
 renderUser();
 
 const queue = document.querySelector(&quot;#queue&quot;);
@@ -3987,18 +2612,8 @@ form.addEventListener(&quot;submit&quot;, async event =&gt; {
 refreshQueue.addEventListener(&quot;click&quot;, carregarFila);
 
 carregarFila();
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/js/consultorio.js">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/js/consultorio.js</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>auth.requireRole(&quot;MEDICO&quot;);
+</code></pre></details></article></template>
+<template id="file-63"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/js/consultorio.js</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend/js<br><strong>Arquivo:</strong> consultorio.js</div><details open><summary>Ver código completo</summary><pre><code>auth.requireRole(&quot;MEDICO&quot;);
 renderUser();
 
 const queue = document.querySelector(&quot;#queue&quot;);
@@ -4143,18 +2758,8 @@ finishButton.addEventListener(&quot;click&quot;, async () =&gt; {
 refreshQueue.addEventListener(&quot;click&quot;, carregarFila);
 
 carregarFila();
-</code></pre>
-    </article>
-    
-    <article class="file-card" data-file="frontend/js/painel.js">
-      <div class="file-title">
-        <div>
-          <span>CRIE ESTE ARQUIVO</span>
-          <h3>frontend/js/painel.js</h3>
-        </div>
-        <button class="copy-file">Copiar código</button>
-      </div>
-      <pre><code>const senha = document.querySelector(&quot;#senha&quot;);
+</code></pre></details></article></template>
+<template id="file-64"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>frontend/js/painel.js</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> frontend/js<br><strong>Arquivo:</strong> painel.js</div><details open><summary>Ver código completo</summary><pre><code>const senha = document.querySelector(&quot;#senha&quot;);
 const nome = document.querySelector(&quot;#nome&quot;);
 const destino = document.querySelector(&quot;#destino&quot;);
 const recentes = document.querySelector(&quot;#recentes&quot;);
@@ -4208,41 +2813,93 @@ async function atualizarPainel() {
 
 atualizarPainel();
 setInterval(atualizarPainel, 2000);
-</code></pre>
-    </article>
-    
-    </section>
-    
-  </div>
-</main>
+</code></pre></details></article></template>
+<template id="file-65"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>docs/visao.md</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> docs<br><strong>Arquivo:</strong> visao.md</div><details open><summary>Ver código completo</summary><pre><code># Visão do Produto
 
-<button class="top" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+## Problema
+Organizar o fluxo entre recepção, triagem, painel de chamadas e consultório.
 
+## Público-alvo
+Recepcionistas, enfermeiros, médicos e administradores.
+
+## Objetivo
+Entregar um MVP acadêmico funcional, simples e demonstrável em sala.
+
+## Escopo
+- Login por cargo
+- CRUD de funcionários
+- Cadastro de atendimento
+- Triagem e classificação
+- Painel com narração
+- Prontuário simplificado
+</code></pre></details></article></template>
+<template id="file-66"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>docs/requisitos.md</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> docs<br><strong>Arquivo:</strong> requisitos.md</div><details open><summary>Ver código completo</summary><pre><code># Requisitos
+
+## Funcionais
+- RF01: realizar login
+- RF02: redirecionar por cargo
+- RF03: gerenciar funcionários
+- RF04: cadastrar atendimento
+- RF05: registrar triagem
+- RF06: chamar paciente
+- RF07: registrar prontuário
+- RF08: finalizar atendimento
+
+## Não funcionais
+- Java 17
+- Spring Boot 3.x
+- API REST
+- HTML, CSS e JavaScript
+- PostgreSQL
+</code></pre></details></article></template>
+<template id="file-67"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>docs/historias.md</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> docs<br><strong>Arquivo:</strong> historias.md</div><details open><summary>Ver código completo</summary><pre><code># Histórias de Usuário
+
+## HU01 — Login
+Como funcionário, quero entrar no sistema para acessar minha área.
+
+## HU02 — Funcionários
+Como administrador, quero cadastrar funcionários e atribuir cargos.
+
+## HU03 — Atendimento
+Como recepcionista, quero cadastrar um paciente e gerar uma senha.
+
+## HU04 — Triagem
+Como enfermeiro, quero registrar sinais e classificação de risco.
+
+## HU05 — Consulta
+Como médico, quero registrar o prontuário e finalizar o atendimento.
+</code></pre></details></article></template>
+<template id="file-68"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>docs/mapa-navegacao.md</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> docs<br><strong>Arquivo:</strong> mapa-navegacao.md</div><details open><summary>Ver código completo</summary><pre><code># Mapa de Navegação
+
+login.html
+├── ADMIN → dashboard.html
+├── RECEPCIONISTA → balcao.html
+├── ENFERMEIRO → triagem.html
+└── MEDICO → consultorio.html
+
+painel.html → público, sem login
+</code></pre></details></article></template>
+<template id="file-69"><article class="code-card"><div class="code-top"><div><small>ARQUIVO</small><h4>docs/testes/roteiro.md</h4></div><button class="copy-btn" type="button">Copiar</button></div><div class="path-box"><strong>Pasta:</strong> docs/testes<br><strong>Arquivo:</strong> roteiro.md</div><details open><summary>Ver código completo</summary><pre><code># Roteiro de Testes
+
+1. Login com cada perfil.
+2. Cadastro de atendimento.
+3. Chamada para triagem.
+4. Registro da classificação.
+5. Chamada para consultório.
+6. Registro do prontuário.
+7. Finalização.
+8. CRUD de funcionários pelo admin.
+</code></pre></details></article></template>
 <script>
-document.querySelectorAll(".copy-file").forEach(button => {
-  button.addEventListener("click", async () => {
-    const card = button.closest(".file-card");
-    const code = card.querySelector("code").innerText;
-
-    await navigator.clipboard.writeText(code);
-    button.textContent = "Copiado!";
-
-    setTimeout(() => {
-      button.textContent = "Copiar código";
-    }, 1300);
-  });
-});
-
-document.getElementById("search").addEventListener("input", event => {
-  const term = event.target.value.toLowerCase().trim();
-
-  document.querySelectorAll(".sprint-section, .code-group").forEach(section => {
-    section.style.display =
-      !term || section.innerText.toLowerCase().includes(term)
-        ? ""
-        : "none";
-  });
-});
-</script>
-</body>
-</html>
+const sprintData=[{"id": 1, "title": "Sprint 1 — Aula 1", "subtitle": "Visão, organização e estrutura do projeto", "goal": "Sair da primeira aula com o repositório organizado, escopo definido e todos sabendo onde trabalhar.", "devs": [{"label": "DEV 1", "role": "Product Owner e recepção", "instruction": "Definir o problema, o público, o fluxo do balcão e os critérios de aceite.", "files": ["file-65"], "paths": ["docs/visao.md"]}, {"label": "DEV 2", "role": "Scrum Master e estrutura", "instruction": "Criar a estrutura raiz, regras do Git e README inicial.", "files": ["file-0", "file-1"], "paths": [".gitignore", "README.md"]}, {"label": "DEV 3", "role": "Responsável pela triagem", "instruction": "Validar os campos e o fluxo visual da triagem.", "files": ["file-68"], "paths": ["docs/mapa-navegacao.md"]}, {"label": "DEV 4", "role": "Painel, médico e admin", "instruction": "Validar como as telas se conectam e quais perfis acessam cada área.", "files": ["file-68"], "paths": ["docs/mapa-navegacao.md"]}, {"label": "DEV 5", "role": "Modelagem de usuários", "instruction": "Definir cargos e dados mínimos dos funcionários.", "files": ["file-66"], "paths": ["docs/requisitos.md"]}, {"label": "DEV 6", "role": "Modelagem do atendimento", "instruction": "Definir o fluxo do paciente e os status do atendimento.", "files": ["file-66"], "paths": ["docs/requisitos.md"]}, {"label": "DEV 7", "role": "Banco, Postman e documentação", "instruction": "Preparar histórias, testes e organização documental.", "files": ["file-67", "file-69"], "paths": ["docs/historias.md", "docs/testes/roteiro.md"]}]}, {"id": 2, "title": "Sprint 2 — Aula 2", "subtitle": "Requisitos, histórias e preparação técnica", "goal": "Fechar as decisões antes de começar a copiar os arquivos do sistema.", "devs": [{"label": "DEV 1", "role": "Critérios de aceite", "instruction": "Revisar histórias de recepção e login.", "files": ["file-67"], "paths": ["docs/historias.md"]}, {"label": "DEV 2", "role": "Organização da Sprint", "instruction": "Revisar requisitos e mapa de navegação.", "files": ["file-66", "file-68"], "paths": ["docs/requisitos.md", "docs/mapa-navegacao.md"]}, {"label": "DEV 3", "role": "Casos de uso da triagem", "instruction": "Confirmar fila, chamada, sinais vitais e classificação.", "files": ["file-67"], "paths": ["docs/historias.md"]}, {"label": "DEV 4", "role": "Casos de uso das telas finais", "instruction": "Confirmar painel, consultório e dashboard.", "files": ["file-68"], "paths": ["docs/mapa-navegacao.md"]}, {"label": "DEV 5", "role": "Contrato de usuários", "instruction": "Definir os dados de login, entrada e resposta.", "files": ["file-7", "file-26", "file-27", "file-28"], "paths": ["backend/src/main/java/com/sistemaupa/enums/Cargo.java", "backend/src/main/java/com/sistemaupa/dto/LoginRequest.java", "backend/src/main/java/com/sistemaupa/dto/UsuarioRequest.java", "backend/src/main/java/com/sistemaupa/dto/UsuarioResponse.java"]}, {"label": "DEV 6", "role": "Contrato do atendimento", "instruction": "Definir dados de cadastro e triagem.", "files": ["file-8", "file-9", "file-29", "file-30"], "paths": ["backend/src/main/java/com/sistemaupa/enums/StatusAtendimento.java", "backend/src/main/java/com/sistemaupa/enums/ClassificacaoRisco.java", "backend/src/main/java/com/sistemaupa/dto/AtendimentoRequest.java", "backend/src/main/java/com/sistemaupa/dto/TriagemRequest.java"]}, {"label": "DEV 7", "role": "Contrato da área médica", "instruction": "Definir chamada, prontuário e solicitação.", "files": ["file-10", "file-11", "file-31", "file-32", "file-33"], "paths": ["backend/src/main/java/com/sistemaupa/enums/TipoSolicitacao.java", "backend/src/main/java/com/sistemaupa/enums/StatusSolicitacao.java", "backend/src/main/java/com/sistemaupa/dto/ChamadaRequest.java", "backend/src/main/java/com/sistemaupa/dto/ProntuarioRequest.java", "backend/src/main/java/com/sistemaupa/dto/SolicitacaoRequest.java"]}]}, {"id": 3, "title": "Sprint 3 — Aula 3", "subtitle": "Spring Boot, banco e entidades", "goal": "Montar a base técnica e criar todas as tabelas principais.", "devs": [{"label": "DEV 1", "role": "Apoio e validação", "instruction": "Conferir nomes de campos e resultados esperados.", "files": ["file-66"], "paths": ["docs/requisitos.md"]}, {"label": "DEV 2", "role": "Configuração Spring Boot", "instruction": "Copiar a configuração base do projeto Java 17.", "files": ["file-2", "file-4", "file-5"], "paths": ["backend/pom.xml", "backend/src/main/java/com/sistemaupa/SistemaUpaApplication.java", "backend/src/main/java/com/sistemaupa/config/CorsConfig.java"]}, {"label": "DEV 3", "role": "Estrutura visual inicial", "instruction": "Criar a entrada do Front-End e CSS base.", "files": ["file-49", "file-56"], "paths": ["frontend/index.html", "frontend/css/style.css"]}, {"label": "DEV 4", "role": "Estrutura das páginas", "instruction": "Criar os HTML de login, dashboard, balcão, triagem, consultório e painel.", "files": ["file-50", "file-51", "file-52", "file-53", "file-54", "file-55"], "paths": ["frontend/login.html", "frontend/dashboard.html", "frontend/balcao.html", "frontend/triagem.html", "frontend/consultorio.html", "frontend/painel.html"]}, {"label": "DEV 5", "role": "Entidade de funcionários", "instruction": "Criar Usuario, Cargo e repository.", "files": ["file-7", "file-12", "file-19"], "paths": ["backend/src/main/java/com/sistemaupa/enums/Cargo.java", "backend/src/main/java/com/sistemaupa/entity/Usuario.java", "backend/src/main/java/com/sistemaupa/repository/UsuarioRepository.java"]}, {"label": "DEV 6", "role": "Entidades do atendimento", "instruction": "Criar Paciente, Atendimento, Triagem e repositories.", "files": ["file-13", "file-14", "file-15", "file-20", "file-21", "file-22"], "paths": ["backend/src/main/java/com/sistemaupa/entity/Paciente.java", "backend/src/main/java/com/sistemaupa/entity/Atendimento.java", "backend/src/main/java/com/sistemaupa/entity/Triagem.java", "backend/src/main/java/com/sistemaupa/repository/PacienteRepository.java", "backend/src/main/java/com/sistemaupa/repository/AtendimentoRepository.java", "backend/src/main/java/com/sistemaupa/repository/TriagemRepository.java"]}, {"label": "DEV 7", "role": "Neon e entidades médicas", "instruction": "Configurar o banco e criar Chamada, Prontuario e Solicitacao.", "files": ["file-3", "file-16", "file-17", "file-18", "file-23", "file-24", "file-25"], "paths": ["backend/src/main/resources/application.properties", "backend/src/main/java/com/sistemaupa/entity/Chamada.java", "backend/src/main/java/com/sistemaupa/entity/Prontuario.java", "backend/src/main/java/com/sistemaupa/entity/Solicitacao.java", "backend/src/main/java/com/sistemaupa/repository/ChamadaRepository.java", "backend/src/main/java/com/sistemaupa/repository/ProntuarioRepository.java", "backend/src/main/java/com/sistemaupa/repository/SolicitacaoRepository.java"]}]}, {"id": 4, "title": "Sprint 4 — Aula 4", "subtitle": "Services, controllers e API REST", "goal": "Deixar o Back-End inteiro funcionando no Postman.", "devs": [{"label": "DEV 1", "role": "Validação funcional", "instruction": "Executar os testes de aceite dos CRUDs.", "files": ["file-69"], "paths": ["docs/testes/roteiro.md"]}, {"label": "DEV 2", "role": "Erros e inicialização", "instruction": "Adicionar tratamento de erros, health e usuário admin.", "files": ["file-48", "file-40", "file-6"], "paths": ["backend/src/main/java/com/sistemaupa/exception/ApiExceptionHandler.java", "backend/src/main/java/com/sistemaupa/controller/HealthController.java", "backend/src/main/java/com/sistemaupa/config/DataInitializer.java"]}, {"label": "DEV 3", "role": "Documentação dos testes", "instruction": "Preparar e executar o roteiro Postman.", "files": ["file-69"], "paths": ["docs/testes/roteiro.md"]}, {"label": "DEV 4", "role": "Apoio de integração", "instruction": "Conferir os formatos JSON que o Front-End receberá.", "files": ["file-28"], "paths": ["backend/src/main/java/com/sistemaupa/dto/UsuarioResponse.java"]}, {"label": "DEV 5", "role": "Login e CRUD de funcionários", "instruction": "Copiar service e controllers de usuários.", "files": ["file-34", "file-41", "file-42"], "paths": ["backend/src/main/java/com/sistemaupa/service/UsuarioService.java", "backend/src/main/java/com/sistemaupa/controller/AuthController.java", "backend/src/main/java/com/sistemaupa/controller/UsuarioController.java"]}, {"label": "DEV 6", "role": "CRUD de atendimento e triagem", "instruction": "Copiar services e controllers principais.", "files": ["file-35", "file-36", "file-43", "file-44"], "paths": ["backend/src/main/java/com/sistemaupa/service/AtendimentoService.java", "backend/src/main/java/com/sistemaupa/service/TriagemService.java", "backend/src/main/java/com/sistemaupa/controller/AtendimentoController.java", "backend/src/main/java/com/sistemaupa/controller/TriagemController.java"]}, {"label": "DEV 7", "role": "Chamadas e área médica", "instruction": "Copiar services e controllers médicos.", "files": ["file-37", "file-38", "file-39", "file-45", "file-46", "file-47"], "paths": ["backend/src/main/java/com/sistemaupa/service/ChamadaService.java", "backend/src/main/java/com/sistemaupa/service/ProntuarioService.java", "backend/src/main/java/com/sistemaupa/service/SolicitacaoService.java", "backend/src/main/java/com/sistemaupa/controller/ChamadaController.java", "backend/src/main/java/com/sistemaupa/controller/ProntuarioController.java", "backend/src/main/java/com/sistemaupa/controller/SolicitacaoController.java"]}]}, {"id": 5, "title": "Sprint 5 — Aula 5", "subtitle": "Front-End completo", "goal": "Copiar e abrir todas as telas com a identidade visual base.", "devs": [{"label": "DEV 1", "role": "Login e balcão", "instruction": "Copiar as telas e scripts da recepção.", "files": ["file-50", "file-59", "file-52", "file-61"], "paths": ["frontend/login.html", "frontend/js/login.js", "frontend/balcao.html", "frontend/js/balcao.js"]}, {"label": "DEV 2", "role": "Integração compartilhada", "instruction": "Copiar API, sessão e CSS global.", "files": ["file-57", "file-58", "file-56"], "paths": ["frontend/js/api.js", "frontend/js/auth.js", "frontend/css/style.css"]}, {"label": "DEV 3", "role": "Triagem", "instruction": "Copiar a tela e o script de triagem.", "files": ["file-53", "file-62"], "paths": ["frontend/triagem.html", "frontend/js/triagem.js"]}, {"label": "DEV 4", "role": "Painel, consultório e dashboard", "instruction": "Copiar as três áreas e seus scripts.", "files": ["file-55", "file-64", "file-54", "file-63", "file-51", "file-60"], "paths": ["frontend/painel.html", "frontend/js/painel.js", "frontend/consultorio.html", "frontend/js/consultorio.js", "frontend/dashboard.html", "frontend/js/dashboard.js"]}, {"label": "DEV 5", "role": "Suporte de usuários", "instruction": "Conferir se o login e CRUD respondem aos campos usados pelo Front-End.", "files": ["file-28", "file-42"], "paths": ["backend/src/main/java/com/sistemaupa/dto/UsuarioResponse.java", "backend/src/main/java/com/sistemaupa/controller/UsuarioController.java"]}, {"label": "DEV 6", "role": "Suporte de filas", "instruction": "Conferir os endpoints das filas e triagem.", "files": ["file-43", "file-44"], "paths": ["backend/src/main/java/com/sistemaupa/controller/AtendimentoController.java", "backend/src/main/java/com/sistemaupa/controller/TriagemController.java"]}, {"label": "DEV 7", "role": "Suporte do painel e médico", "instruction": "Conferir endpoints de chamada e prontuário.", "files": ["file-45", "file-46"], "paths": ["backend/src/main/java/com/sistemaupa/controller/ChamadaController.java", "backend/src/main/java/com/sistemaupa/controller/ProntuarioController.java"]}]}, {"id": 6, "title": "Sprint 6 — Aula 6", "subtitle": "Integração em nuvem", "goal": "Fazer Vercel, Railway e Neon funcionarem juntos em várias máquinas.", "devs": [{"label": "DEV 1", "role": "Teste da recepção", "instruction": "Testar login e cadastro pelo Front-End.", "files": ["file-59", "file-61"], "paths": ["frontend/js/login.js", "frontend/js/balcao.js"]}, {"label": "DEV 2", "role": "CORS e URLs", "instruction": "Configurar URL da API e domínio do Front-End.", "files": ["file-57", "file-5", "file-3"], "paths": ["frontend/js/api.js", "backend/src/main/java/com/sistemaupa/config/CorsConfig.java", "backend/src/main/resources/application.properties"]}, {"label": "DEV 3", "role": "Teste da triagem", "instruction": "Testar chamada, narração e salvamento.", "files": ["file-62"], "paths": ["frontend/js/triagem.js"]}, {"label": "DEV 4", "role": "Teste painel/médico/admin", "instruction": "Testar as três telas integradas.", "files": ["file-64", "file-63", "file-60"], "paths": ["frontend/js/painel.js", "frontend/js/consultorio.js", "frontend/js/dashboard.js"]}, {"label": "DEV 5", "role": "Correções de usuários", "instruction": "Ajustar login e CRUD conforme erros encontrados.", "files": ["file-34"], "paths": ["backend/src/main/java/com/sistemaupa/service/UsuarioService.java"]}, {"label": "DEV 6", "role": "Correções de filas", "instruction": "Ajustar status e ordenação.", "files": ["file-35", "file-36"], "paths": ["backend/src/main/java/com/sistemaupa/service/AtendimentoService.java", "backend/src/main/java/com/sistemaupa/service/TriagemService.java"]}, {"label": "DEV 7", "role": "Fluxo completo no Postman", "instruction": "Executar o roteiro ponta a ponta.", "files": ["file-69"], "paths": ["docs/testes/roteiro.md"]}]}, {"id": 7, "title": "Sprint 7 — Aula 7", "subtitle": "Testes e correções", "goal": "Eliminar os erros que impedem a apresentação.", "devs": [{"label": "DEV 1", "role": "QA login/balcão", "instruction": "Executar e registrar testes da recepção.", "files": ["file-69"], "paths": ["docs/testes/roteiro.md"]}, {"label": "DEV 2", "role": "Controle de bugs", "instruction": "Organizar correções, PRs e merges.", "files": ["file-1"], "paths": ["README.md"]}, {"label": "DEV 3", "role": "QA triagem", "instruction": "Testar fila, chamada, dor e classificação.", "files": ["file-69"], "paths": ["docs/testes/roteiro.md"]}, {"label": "DEV 4", "role": "QA painel/médico/admin", "instruction": "Testar áudio, prontuário, finalização e funcionários.", "files": ["file-69"], "paths": ["docs/testes/roteiro.md"]}, {"label": "DEV 5", "role": "Correções usuários", "instruction": "Corrigir os erros registrados.", "files": ["file-34"], "paths": ["backend/src/main/java/com/sistemaupa/service/UsuarioService.java"]}, {"label": "DEV 6", "role": "Correções atendimento", "instruction": "Corrigir status, filas e validações.", "files": ["file-35"], "paths": ["backend/src/main/java/com/sistemaupa/service/AtendimentoService.java"]}, {"label": "DEV 7", "role": "Revisão técnica", "instruction": "Revisar banco, Postman e endpoints.", "files": ["file-69"], "paths": ["docs/testes/roteiro.md"]}]}, {"id": 8, "title": "Sprint 8 — Aula 8", "subtitle": "Ensaio e apresentação", "goal": "Apresentar o sistema completo com cada setor em uma máquina.", "devs": [{"label": "DEV 1", "role": "Apresentação do produto", "instruction": "Explicar problema, objetivo e fluxo.", "files": ["file-65"], "paths": ["docs/visao.md"]}, {"label": "DEV 2", "role": "Coordenação e README", "instruction": "Coordenar a ordem da apresentação.", "files": ["file-1"], "paths": ["README.md"]}, {"label": "DEV 3", "role": "Operador da triagem", "instruction": "Entrar como enfermeiro, chamar e classificar.", "files": ["file-53", "file-62"], "paths": ["frontend/triagem.html", "frontend/js/triagem.js"]}, {"label": "DEV 4", "role": "Operador do painel/médico/admin", "instruction": "Controlar projetor e demonstrar as telas.", "files": ["file-55", "file-54", "file-51"], "paths": ["frontend/painel.html", "frontend/consultorio.html", "frontend/dashboard.html"]}, {"label": "DEV 5", "role": "Suporte do Railway", "instruction": "Monitorar login e logs.", "files": ["file-40"], "paths": ["backend/src/main/java/com/sistemaupa/controller/HealthController.java"]}, {"label": "DEV 6", "role": "Demonstração da API", "instruction": "Mostrar CRUD principal no Postman.", "files": ["file-43"], "paths": ["backend/src/main/java/com/sistemaupa/controller/AtendimentoController.java"]}, {"label": "DEV 7", "role": "Banco e arquitetura", "instruction": "Explicar entidades, banco e endpoints.", "files": ["file-3", "file-69"], "paths": ["backend/src/main/resources/application.properties", "docs/testes/roteiro.md"]}]}];
+const filePaths={".gitignore": "file-0", "README.md": "file-1", "backend/pom.xml": "file-2", "backend/src/main/resources/application.properties": "file-3", "backend/src/main/java/com/sistemaupa/SistemaUpaApplication.java": "file-4", "backend/src/main/java/com/sistemaupa/config/CorsConfig.java": "file-5", "backend/src/main/java/com/sistemaupa/config/DataInitializer.java": "file-6", "backend/src/main/java/com/sistemaupa/enums/Cargo.java": "file-7", "backend/src/main/java/com/sistemaupa/enums/StatusAtendimento.java": "file-8", "backend/src/main/java/com/sistemaupa/enums/ClassificacaoRisco.java": "file-9", "backend/src/main/java/com/sistemaupa/enums/TipoSolicitacao.java": "file-10", "backend/src/main/java/com/sistemaupa/enums/StatusSolicitacao.java": "file-11", "backend/src/main/java/com/sistemaupa/entity/Usuario.java": "file-12", "backend/src/main/java/com/sistemaupa/entity/Paciente.java": "file-13", "backend/src/main/java/com/sistemaupa/entity/Atendimento.java": "file-14", "backend/src/main/java/com/sistemaupa/entity/Triagem.java": "file-15", "backend/src/main/java/com/sistemaupa/entity/Chamada.java": "file-16", "backend/src/main/java/com/sistemaupa/entity/Prontuario.java": "file-17", "backend/src/main/java/com/sistemaupa/entity/Solicitacao.java": "file-18", "backend/src/main/java/com/sistemaupa/repository/UsuarioRepository.java": "file-19", "backend/src/main/java/com/sistemaupa/repository/PacienteRepository.java": "file-20", "backend/src/main/java/com/sistemaupa/repository/AtendimentoRepository.java": "file-21", "backend/src/main/java/com/sistemaupa/repository/TriagemRepository.java": "file-22", "backend/src/main/java/com/sistemaupa/repository/ChamadaRepository.java": "file-23", "backend/src/main/java/com/sistemaupa/repository/ProntuarioRepository.java": "file-24", "backend/src/main/java/com/sistemaupa/repository/SolicitacaoRepository.java": "file-25", "backend/src/main/java/com/sistemaupa/dto/LoginRequest.java": "file-26", "backend/src/main/java/com/sistemaupa/dto/UsuarioRequest.java": "file-27", "backend/src/main/java/com/sistemaupa/dto/UsuarioResponse.java": "file-28", "backend/src/main/java/com/sistemaupa/dto/AtendimentoRequest.java": "file-29", "backend/src/main/java/com/sistemaupa/dto/TriagemRequest.java": "file-30", "backend/src/main/java/com/sistemaupa/dto/ChamadaRequest.java": "file-31", "backend/src/main/java/com/sistemaupa/dto/ProntuarioRequest.java": "file-32", "backend/src/main/java/com/sistemaupa/dto/SolicitacaoRequest.java": "file-33", "backend/src/main/java/com/sistemaupa/service/UsuarioService.java": "file-34", "backend/src/main/java/com/sistemaupa/service/AtendimentoService.java": "file-35", "backend/src/main/java/com/sistemaupa/service/TriagemService.java": "file-36", "backend/src/main/java/com/sistemaupa/service/ChamadaService.java": "file-37", "backend/src/main/java/com/sistemaupa/service/ProntuarioService.java": "file-38", "backend/src/main/java/com/sistemaupa/service/SolicitacaoService.java": "file-39", "backend/src/main/java/com/sistemaupa/controller/HealthController.java": "file-40", "backend/src/main/java/com/sistemaupa/controller/AuthController.java": "file-41", "backend/src/main/java/com/sistemaupa/controller/UsuarioController.java": "file-42", "backend/src/main/java/com/sistemaupa/controller/AtendimentoController.java": "file-43", "backend/src/main/java/com/sistemaupa/controller/TriagemController.java": "file-44", "backend/src/main/java/com/sistemaupa/controller/ChamadaController.java": "file-45", "backend/src/main/java/com/sistemaupa/controller/ProntuarioController.java": "file-46", "backend/src/main/java/com/sistemaupa/controller/SolicitacaoController.java": "file-47", "backend/src/main/java/com/sistemaupa/exception/ApiExceptionHandler.java": "file-48", "frontend/index.html": "file-49", "frontend/login.html": "file-50", "frontend/dashboard.html": "file-51", "frontend/balcao.html": "file-52", "frontend/triagem.html": "file-53", "frontend/consultorio.html": "file-54", "frontend/painel.html": "file-55", "frontend/css/style.css": "file-56", "frontend/js/api.js": "file-57", "frontend/js/auth.js": "file-58", "frontend/js/login.js": "file-59", "frontend/js/dashboard.js": "file-60", "frontend/js/balcao.js": "file-61", "frontend/js/triagem.js": "file-62", "frontend/js/consultorio.js": "file-63", "frontend/js/painel.js": "file-64", "docs/visao.md": "file-65", "docs/requisitos.md": "file-66", "docs/historias.md": "file-67", "docs/mapa-navegacao.md": "file-68", "docs/testes/roteiro.md": "file-69"};
+const sprintGrid=document.getElementById('sprintGrid'); const workspace=document.getElementById('workspace'); const devSelector=document.getElementById('devSelector'); const codesStack=document.getElementById('codesStack'); const fileIndex=document.getElementById('fileIndex');
+let currentSprint=0,currentDev=0;
+function cloneFile(templateId){return document.getElementById(templateId).content.firstElementChild.cloneNode(true)}
+function bindCopy(root=document){root.querySelectorAll('.copy-btn').forEach(btn=>{btn.onclick=async()=>{const code=btn.closest('.code-card').querySelector('code').innerText;await navigator.clipboard.writeText(code);btn.textContent='Copiado!';setTimeout(()=>btn.textContent='Copiar',1200)}})}
+function renderSprintTiles(){sprintGrid.innerHTML=sprintData.map((s,i)=>`<button class="sprint-tile ${i===currentSprint?'active':''}" data-i="${i}"><span>SPRINT ${i+1}</span><strong>${s.title}</strong><small>${s.subtitle}</small></button>`).join('');sprintGrid.querySelectorAll('button').forEach(b=>b.onclick=()=>openSprint(+b.dataset.i,0))}
+function openSprint(si,di=0){currentSprint=si;currentDev=di;const s=sprintData[si];workspace.classList.add('visible');document.getElementById('wsNumber').textContent=`SPRINT ${si+1}`;document.getElementById('wsTitle').textContent=s.subtitle;document.getElementById('wsGoal').textContent=s.goal;devSelector.innerHTML=s.devs.map((d,i)=>`<button class="dev-btn ${i===di?'active':''}" data-i="${i}">${d.label}</button>`).join('');devSelector.querySelectorAll('button').forEach(b=>b.onclick=()=>openSprint(si,+b.dataset.i));renderDev();renderSprintTiles();workspace.scrollIntoView({behavior:'smooth',block:'start'})}
+function renderDev(){const d=sprintData[currentSprint].devs[currentDev];document.getElementById('devLabel').textContent=d.label;document.getElementById('devRole').textContent=d.role;document.getElementById('devInstruction').textContent=d.instruction;document.getElementById('fileCount').textContent=`${d.files.length} arquivo(s)`;fileIndex.innerHTML=d.paths.map((p,i)=>`<button class="file-link" data-i="${i}">${p}</button>`).join('');codesStack.innerHTML='';d.files.forEach(id=>codesStack.appendChild(cloneFile(id)));bindCopy(codesStack);fileIndex.querySelectorAll('button').forEach(b=>b.onclick=()=>codesStack.children[+b.dataset.i].scrollIntoView({behavior:'smooth',block:'start'}))}
+function renderLibrary(){const q=document.getElementById('searchFile').value.toLowerCase();const area=document.getElementById('filterArea').value;const grid=document.getElementById('libraryGrid');grid.innerHTML='';Object.entries(filePaths).forEach(([path,id])=>{const okQ=path.toLowerCase().includes(q);const okA=area==='all'||(area==='root'&&!path.includes('/'))||path.startsWith(area+'/');if(okQ&&okA)grid.appendChild(cloneFile(id))});bindCopy(grid)}
+document.getElementById('searchFile').oninput=renderLibrary;document.getElementById('filterArea').onchange=renderLibrary;renderSprintTiles();renderLibrary();
+</script></body></html>
